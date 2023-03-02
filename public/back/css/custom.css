@@ -2,13 +2,18 @@
     text-align: center;
 }
 
-.main-menu.menu-dark .navigation > li.open .hover > a {
-    background: transparent; }
-
-.main-menu.menu-dark .navigation > li ul li > a:hover {
-    background-color: #38445a !important;
-}
-
 .image-preview.hide {
     display: none;
+}
+
+.nice-select {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    line-height: 20px;
+}
+
+.nice-select .list {
+    display: block;
+    width: 100%;
 }

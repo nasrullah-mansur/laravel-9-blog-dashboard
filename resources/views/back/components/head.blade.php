@@ -12,9 +12,14 @@
   rel="stylesheet">
   <!-- BEGIN VENDOR CSS-->
   <link rel="stylesheet" type="text/css" href="{{ asset('back/css/vendors.css') }}">
+  
   <link rel="stylesheet" type="text/css" href="{{ asset('back/vendors/css/tables/datatable/datatables.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('back/vendors/css/tables/extensions/buttons.dataTables.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('back/vendors/css/tables/datatable/buttons.bootstrap4.min.css') }}">
+
+  <link rel="stylesheet" href="{{ asset('back/plugins/niceselect/nice-select.css') }}">
+  <link rel="stylesheet" href="{{ asset('back/plugins/nestable/netable.css') }}">
+
   <!-- END VENDOR CSS-->
   <link rel="stylesheet" href="{{ asset('back/vendors/css/extensions/toastr.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('back/vendors/css/forms/selects/select2.min.css') }}">
@@ -22,6 +27,9 @@
   <link rel="stylesheet" href="{{ asset('back/plugins/summernote/summernote-bs4.min.css') }}">
   <!-- BEGIN STACK CSS-->
   <link rel="stylesheet" type="text/css" href="{{ asset('back/css/app.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('back/vendors/css/forms/icheck/icheck.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('back/vendors/css/forms/icheck/custom.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('back/css/plugins/forms/checkboxes-radios.css') }}">
   <!-- END STACK CSS-->
   <!-- BEGIN Page Level CSS-->
   <link rel="stylesheet" type="text/css" href="{{ asset('back/css/core/menu/menu-types/vertical-menu.css') }}">

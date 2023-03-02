@@ -17,8 +17,16 @@
           </ul>
         </li>
         
-        <li class=" nav-item">
+        <li class=" nav-item {{ Route::is('admin.user.*') ? 'active' : ''}}">
             <a href="{{route('admin.user')}}"><i class="ft-box"></i><span class="menu-title">Users</span></a>
+        </li>
+
+        <li class=" nav-item {{ Route::is('appearance.edit') ? 'active' : ''}}">
+            <a href="{{route('appearance.edit')}}"><i class="ft-box"></i><span class="menu-title">Appearance</span></a>
+        </li>
+
+        <li class=" nav-item {{ Route::is('menu.*', 'menuItem.*') ? 'active' : ''}}">
+            <a href="{{route('menu.index')}}"><i class="ft-box"></i><span class="menu-title">Menu</span></a>
         </li>
         
       </ul>

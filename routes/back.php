@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\Back\BlogCategoryController;
-use App\Http\Controllers\Back\BlogController;
-use App\Http\Controllers\Back\BlogTagController;
-use App\Http\Controllers\Back\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Back\BlogController;
+use App\Http\Controllers\Back\MenuController;
+use App\Http\Controllers\Back\UserController;
+use App\Http\Controllers\Back\BlogTagController;
+use App\Http\Controllers\Back\AppearanceController;
+use App\Http\Controllers\Back\BlogCategoryController;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -52,5 +54,22 @@ Route::middleware('auth')->group(function () {
         Route::get('blog/edit/{id}', [BlogController::class, 'edit'])->name('blog.edit');
         Route::post('blog/update/{id}', [BlogController::class, 'update'])->name('blog.update');
         Route::post('blog/delete', [BlogController::class, 'delete'])->name('blog.delete');
+
+        // Appearance;
+        Route::get('appearance/edit', [AppearanceController::class, 'edit'])->name('appearance.edit');
+        Route::post('appearance/update', [AppearanceController::class, 'update'])->name('appearance.update');
+
+        // Menu;
+        Route::get('/menu', [MenuController::class, 'index'])->name('menu.index');
+        Route::post('/menu/store', [MenuController::class, 'store'])->name('menu.store');
+        Route::post('/menu/update/{id}', [MenuController::class, 'update'])->name('menu.update');
+        Route::post('/menu/delete', [MenuController::class, 'delete'])->name('menu.delete');
+
+        // Menu Item;
+        Route::get('/menu/{slug}', [MenuController::class, 'menuItem'])->name('menuItem.index');
+        Route::post('/add/item', [MenuController::class, 'addItem'])->name('menuItem.addItem');
+        Route::post('/menu/item/store/{menu_id}', [MenuController::class, 'menuItemStore'])->name('menuItem.store');
+        Route::post('/menu/item/update', [MenuController::class, 'menuItemUpdate'])->name('menuItem.update');
+        Route::post('/menu/item/delete', [MenuController::class, 'menuItemDelete'])->name('menuItem.delete');
     });
 });

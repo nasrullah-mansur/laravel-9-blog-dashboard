@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Appearance;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
@@ -7,6 +8,8 @@ use Illuminate\Support\Facades\File;
 const STATUS_ACTIVE = 'ACTIVE';
 const STATUS_INACTIVE = 'INACTIVE';
 const SLIDER_PATH = 'uploaded_file/images/slider/';
+const LOGO_PATH = 'uploaded_file/images/logo/';
+const FAVICON_PATH = 'uploaded_file/images/favicon/';
 const APPEARANCE_PATH = 'uploaded_file/images/appearance/';
 const BLOG_PATH = 'uploaded_file/images/blog/';
 const IMAGE_GALLERY_PATH = 'uploaded_file/images/gallery/';
@@ -72,4 +75,9 @@ function generateRandomString($length = 4)
         $randomString .= $characters[rand(0, $charactersLength - 1)];
     }
     return $randomString . '-';
+}
+
+function theme()
+{
+    return $app = Appearance::first();
 }
