@@ -1,4 +1,4 @@
-@extends('back.layout.layout', [$title = 'All blog categories', $add_btn = 'Add new category', $add_btn_link = route('blog.category.create')])
+@extends('back.layout.layout', [$title = 'Video Gallery', $add_btn = 'Add new item', $add_btn_link = route('video_gallery.create')])
 
 @section('content')
 <section id="html5">
@@ -6,7 +6,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">All blog categories</h4>
+            <h4 class="card-title">Video Gallery</h4>
             <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
             <div class="heading-elements">
               <ul class="list-inline mb-0">
@@ -36,7 +36,7 @@
          // Delete Data;
          $('.dataTable').on('click', '.delete-data', function(e) {
              e.preventDefault();
-             let deleteRoute = "{{ route('blog.category.delete') }}";
+             let deleteRoute = "{{ route('video_gallery.delete') }}";
                  let delteteDataId = $(this).attr("data-id");
                  swal({
                      title: "Are you sure?",
@@ -68,20 +68,15 @@
                                  id: delteteDataId,
                              },
                              success: function(response){
-                                if(response == '') {
-                                         swal({
+                              swal({
                                         icon: "success",
                                         title: "Deleted!",
-                                        text: "Your imaginary item has been deleted.",
+                                        text: "Your imaginary file has been deleted.",
                                         showConfirmButton: true,
                                         closeModal: false,
                                     });
         
                                     $('.dataTable').DataTable().ajax.reload();
-                                }
-                                else {
-                                    swal("Sorry!", response.text, "warning");
-                                }
                                  
                              }
                          });

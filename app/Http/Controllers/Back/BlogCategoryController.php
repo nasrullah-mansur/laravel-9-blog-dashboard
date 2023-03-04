@@ -7,6 +7,7 @@ use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\DataTables\BlogCategoryDataTable;
+use App\Models\Blog;
 
 class BlogCategoryController extends Controller
 {
@@ -60,11 +61,16 @@ class BlogCategoryController extends Controller
     {
         $category = BlogCategory::where('id', $request->id)->firstOrFail();
 
-        return [
-            'type' => 'error',
-            'text' => 'success'
-        ];
+        $blog = Blog::where('blog_category_id', $category->id)->first();
 
-        // $category->delete();
+        if ($blog) {
+            return [
+                'type' => 'error',
+                'text' => 'Please remove blog items first that under this category then try again'
+            ];
+        }
+
+
+        $category->delete();
     }
 }

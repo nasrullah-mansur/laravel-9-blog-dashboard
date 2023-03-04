@@ -8,6 +8,8 @@ use App\Http\Controllers\Back\UserController;
 use App\Http\Controllers\Back\BlogTagController;
 use App\Http\Controllers\Back\AppearanceController;
 use App\Http\Controllers\Back\BlogCategoryController;
+use App\Http\Controllers\Back\ImageGalleryController;
+use App\Http\Controllers\Back\VideoGalleryController;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -71,5 +73,37 @@ Route::middleware('auth')->group(function () {
         Route::post('/menu/item/store/{menu_id}', [MenuController::class, 'menuItemStore'])->name('menuItem.store');
         Route::post('/menu/item/update', [MenuController::class, 'menuItemUpdate'])->name('menuItem.update');
         Route::post('/menu/item/delete', [MenuController::class, 'menuItemDelete'])->name('menuItem.delete');
+
+        // Video Gallery Category;
+        Route::get('gallery/video/categories', [VideoGalleryController::class, 'index_category'])->name('video_gallery_category.index');
+        Route::get('gallery/video/category/create', [VideoGalleryController::class, 'create_category'])->name('video_gallery_category.create');
+        Route::post('gallery/video/category/store', [VideoGalleryController::class, 'store_category'])->name('video_gallery_category.store');
+        Route::get('gallery/video/category/edit/{id}', [VideoGalleryController::class, 'edit_category'])->name('video_gallery_category.edit');
+        Route::post('gallery/video/category/update/{id}', [VideoGalleryController::class, 'update_category'])->name('video_gallery_category.update');
+        Route::post('gallery/video/category/delete', [VideoGalleryController::class, 'delete_category'])->name('video_gallery_category.delete');
+
+        // Video Gallery;
+        Route::get('gallery/videos', [VideoGalleryController::class, 'index'])->name('video_gallery.index');
+        Route::get('gallery/video/create', [VideoGalleryController::class, 'create'])->name('video_gallery.create');
+        Route::post('gallery/video/store', [VideoGalleryController::class, 'store'])->name('video_gallery.store');
+        Route::get('gallery/video/edit/{id}', [VideoGalleryController::class, 'edit'])->name('video_gallery.edit');
+        Route::post('gallery/video/update/{id}', [VideoGalleryController::class, 'update'])->name('video_gallery.update');
+        Route::post('gallery/video/delete', [VideoGalleryController::class, 'delete'])->name('video_gallery.delete');
+
+        // Image Gallery Category;
+        Route::get('gallery/image/categories', [ImageGalleryController::class, 'index_category'])->name('image_gallery_category.index');
+        Route::get('gallery/image/category/create', [ImageGalleryController::class, 'create_category'])->name('image_gallery_category.create');
+        Route::post('gallery/image/category/store', [ImageGalleryController::class, 'store_category'])->name('image_gallery_category.store');
+        Route::get('gallery/image/category/edit/{id}', [ImageGalleryController::class, 'edit_category'])->name('image_gallery_category.edit');
+        Route::post('gallery/image/category/update/{id}', [ImageGalleryController::class, 'update_category'])->name('image_gallery_category.update');
+        Route::post('gallery/image/category/delete', [ImageGalleryController::class, 'delete_category'])->name('image_gallery_category.delete');
+
+        // Image Gallery;
+        Route::get('gallery/images', [ImageGalleryController::class, 'index'])->name('image_gallery.index');
+        Route::get('gallery/image/create', [ImageGalleryController::class, 'create'])->name('image_gallery.create');
+        Route::post('gallery/image/store', [ImageGalleryController::class, 'store'])->name('image_gallery.store');
+        Route::get('gallery/image/edit/{id}', [ImageGalleryController::class, 'edit'])->name('image_gallery.edit');
+        Route::post('gallery/image/update/{id}', [ImageGalleryController::class, 'update'])->name('image_gallery.update');
+        Route::post('gallery/image/delete', [ImageGalleryController::class, 'delete'])->name('image_gallery.delete');
     });
 });

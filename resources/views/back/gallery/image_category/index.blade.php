@@ -1,4 +1,4 @@
-@extends('back.layout.layout', [$title = 'All blog categories', $add_btn = 'Add new category', $add_btn_link = route('blog.category.create')])
+@extends('back.layout.layout', [$title = 'All Image Categories', $add_btn = 'Add new image category', $add_btn_link = route('image_gallery_category.create')])
 
 @section('content')
 <section id="html5">
@@ -6,7 +6,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">All blog categories</h4>
+            <h4 class="card-title">All Video Categories</h4>
             <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
             <div class="heading-elements">
               <ul class="list-inline mb-0">
@@ -19,7 +19,33 @@
           </div>
           <div class="card-content collapse show">
             <div class="card-body card-dashboard table-responsive">
-                {{$dataTable->table()}}
+              <div class="table-responsive">
+                <table class="table table-bordered mb-0">
+                  <thead>
+                    <tr>
+                      <th>Category Title</th>
+                      <th>Slug</th>
+                      <th>Image</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ($categories as $category)
+                    <tr>
+                      <td>{{ $category->title }}</td>
+                      <td>{{ $category->slug }}</td>
+                      <td>{{ $category->items->count() }}</td>
+                      <td>
+                        <div class="d-flex action-btn">
+                          <a class="btn btn-icon btn-success" style="margin-right: 5px;" href="{{ route('image_gallery_category.edit', $category->id) }}"><i class="ft-edit"></i></a>
+                          <a data-id="{{ $category->id }}" class="btn btn-icon btn-danger delete-data" style="margin-right: 5px;" href="#"><i class="ft-trash-2"></i></a> 
+                      </div>
+                      </td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -29,14 +55,13 @@
 @endsection
 
 @push('db_js')
-    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
-
+    
     <script>
         
          // Delete Data;
-         $('.dataTable').on('click', '.delete-data', function(e) {
+         $('.table').on('click', '.delete-data', function(e) {
              e.preventDefault();
-             let deleteRoute = "{{ route('blog.category.delete') }}";
+             let deleteRoute = "{{ route('image_gallery_category.delete') }}";
                  let delteteDataId = $(this).attr("data-id");
                  swal({
                      title: "Are you sure?",
@@ -68,7 +93,7 @@
                                  id: delteteDataId,
                              },
                              success: function(response){
-                                if(response == '') {
+                              if(response == 'success') {
                                          swal({
                                         icon: "success",
                                         title: "Deleted!",
@@ -77,13 +102,13 @@
                                         closeModal: false,
                                     });
         
-                                    $('.dataTable').DataTable().ajax.reload();
+                                    $('.table').load(' .table');
                                 }
                                 else {
-                                    swal("Sorry!", response.text, "warning");
+                                    swal("Sorry!", response, "warning");
                                 }
-                                 
                              }
+                              
                          });
                      } else {
                          swal({

@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\BlogCategory;
+use App\Models\VideoGallery;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class BlogCategoryDataTable extends DataTable
+class VideoGalleryDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -28,16 +28,27 @@ class BlogCategoryDataTable extends DataTable
             ->editColumn('created_at', function ($data) {
                 return $data->created_at->diffForHumans(); // human readable format
             })
+
             ->editColumn('updated_at', function ($data) {
                 return $data->created_at->diffForHumans(); // human readable format
             })
-            ->editColumn('blogs', function ($data) {
-                return $data->blogs->count();
+
+            ->editColumn('category', function ($data) {
+                return $data->category->title;
             })
+
+            ->editColumn('status', function ($data) {
+                if ($data->status == STATUS_ACTIVE) {
+                    return '<span class="text-primary p-1">Public</span>';
+                } else {
+                    return '<span class="text-warning p-1">Draft</span>';
+                }
+            })
+
             ->editColumn('action', function ($data) {
                 return
                     '<div class="d-flex action-btn">
-                        <a class="btn btn-icon btn-success" style="margin-right: 5px;" href="' . route('blog.category.edit', $data->id) . '"><i class="ft-edit"></i></a>
+                        <a class="btn btn-icon btn-success" style="margin-right: 5px;" href="' . route('video_gallery.edit', $data->id) . '"><i class="ft-edit"></i></a>
                         <a data-id="' . $data->id . '" class="btn btn-icon btn-danger delete-data" style="margin-right: 5px;" href="#"><i class="ft-trash-2"></i></a> 
                     </div>';
             })
@@ -47,10 +58,10 @@ class BlogCategoryDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\BlogCategory $model
+     * @param \App\Models\VideoGallery $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(BlogCategory $model): QueryBuilder
+    public function query(VideoGallery $model): QueryBuilder
     {
         return $model->orderBy('created_at', 'DESC')->newQuery();
     }
@@ -88,10 +99,9 @@ class BlogCategoryDataTable extends DataTable
     {
         return [
             Column::make('SL')->orderable(false)->searchable(false),
-            // Column::make('image'),
-            Column::make('title'),
-            Column::make('slug'),
-            Column::make('blogs'),
+            Column::make('iframe_link'),
+            Column::make('category'),
+            Column::make('status'),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::computed('action')
@@ -109,6 +119,6 @@ class BlogCategoryDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'BlogCategory_' . date('YmdHis');
+        return 'VideoGallery_' . date('YmdHis');
     }
 }

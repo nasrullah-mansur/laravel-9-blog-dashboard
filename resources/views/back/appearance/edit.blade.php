@@ -68,7 +68,7 @@
                 @endif
               </fieldset>
 
-              <fieldset class="form-group mb-0">
+              <fieldset class="form-group">
                 <label for="meta">Meta Tags</label>
                 <textarea id="meta" rows="5" class="form-control" name="meta" placeholder="Meta tags">{{ theme() ? theme()->meta : '' }}</textarea>
                 @if($errors->has('meta'))
@@ -76,7 +76,7 @@
                 @endif
               </fieldset>
 
-              <fieldset class="form-group mb-0">
+              <fieldset class="form-group">
                 <label for="custom_css">Custom CSS</label>
                 <textarea id="custom_css" rows="5" class="form-control" name="custom_css" placeholder="Custom CSS">{{ theme() ? theme()->custom_css : '' }}</textarea>
                 @if($errors->has('custom_css'))
@@ -84,7 +84,7 @@
                 @endif
               </fieldset>
 
-              <fieldset class="form-group mb-0">
+              <fieldset class="form-group">
                 <label for="custom_javascript">Custom JavaScript</label>
                 <textarea id="custom_javascript" rows="5" class="form-control" name="custom_javascript" placeholder="Custom JavaScript">{{ theme() ? theme()->custom_javascript : '' }}</textarea>
                 @if($errors->has('custom_javascript'))

@@ -55,7 +55,7 @@
                         : "custom link",
                     liUrl: getLiSelect.getAttribute("data-slug")
                         ? getLiSelect.getAttribute("data-slug")
-                        : "custom-url",
+                        : "#",
                     liClass: getLiSelect.getAttribute("data-class")
                         ? getLiSelect.getAttribute("data-class")
                         : null,
