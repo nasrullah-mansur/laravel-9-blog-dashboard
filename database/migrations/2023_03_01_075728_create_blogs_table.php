@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('status');
             $table->longText('content');
+            $table->longText('details');
             $table->timestamps();
         });
     }

@@ -64,11 +64,19 @@
                 @endif
               </fieldset>
 
-              <fieldset class="form-group mb-0">
+              <fieldset class="form-group">
                 <label for="content">Content</label>
-                <textarea id="content" rows="5" class="form-control summernote" name="content" placeholder="content">{{ $blog->content }}</textarea>
+                <textarea id="content" rows="5" class="form-control" name="content" placeholder="content">{{ $blog->content }}</textarea>
                 @if($errors->has('content'))
                 <small class="text-danger">{{ $errors->first('content') }}</small>
+                @endif
+              </fieldset>
+
+              <fieldset class="form-group mb-0">
+                <label for="details">Details</label>
+                <textarea id="details" rows="5" class="form-control summernote" name="details" placeholder="details">{{ $blog->details }}</textarea>
+                @if($errors->has('details'))
+                <small class="text-danger">{{ $errors->first('details') }}</small>
                 @endif
               </fieldset>
 

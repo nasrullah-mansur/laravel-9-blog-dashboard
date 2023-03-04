@@ -31,6 +31,7 @@ class BlogController extends Controller
             'title' => 'required',
             'image' => 'required|mimes:png,jpg',
             'content' => 'required',
+            'details' => 'required',
             'status' => 'required'
         ]);
 
@@ -40,6 +41,7 @@ class BlogController extends Controller
         $blog->image = ImageUpload($request->image, BLOG_PATH);
         $blog->thumbnail = 'image thumbnail';
         $blog->content = $request->content;
+        $blog->details = $request->details;
         $blog->blog_category_id = $request->blog_category_id;
         $blog->status = $request->status;
 
@@ -72,6 +74,7 @@ class BlogController extends Controller
             'title' => 'required',
             'image' => 'nullable|mimes:png,jpg',
             'content' => 'required',
+            'details' => 'required',
             'status' => 'required'
         ]);
 
@@ -85,6 +88,7 @@ class BlogController extends Controller
         }
 
         $blog->content = $request->content;
+        $blog->details = $request->details;
         $blog->blog_category_id = $request->blog_category_id;
         $blog->status = $request->status;
 
