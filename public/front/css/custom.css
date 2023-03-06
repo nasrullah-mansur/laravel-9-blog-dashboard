@@ -1,0 +1,26 @@
+.break-content {
+    display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+#gallery .gallery-slider .slick-arrow,
+.playlist-area .slick-arrow {
+    top: 100%;
+    left: 50%;
+    margin: 20px 5px 0;
+    transition: all .3s;
+}
+
+#gallery .gallery-slider .slick-prev,
+.playlist-area .slick-prev {
+    left: auto;
+    right: 50%;
+}
+
+#gallery .gallery-gap {
+    margin: 0;
+    padding: 0 5px;
+    box-sizing: border-box;
+}

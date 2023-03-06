@@ -40,7 +40,8 @@ class AppearanceController extends Controller
                 'theme_name' => 'required',
                 'admin_name' => 'required',
                 'logo' => 'required|mimes:png,jpg',
-                'favicon' => 'required|mimes:png,jpg'
+                'favicon' => 'required|mimes:png,jpg',
+                'address' => 'required'
             ]);
 
             $app = new Appearance();
@@ -52,6 +53,7 @@ class AppearanceController extends Controller
         $app->admin_name = $request->admin_name;
         $app->admin_name = $request->admin_name;
         $app->meta = $request->meta;
+        $app->address = $request->address;
         $app->custom_css = $request->custom_css;
         $app->custom_javascript = $request->custom_javascript;
         $app->save();

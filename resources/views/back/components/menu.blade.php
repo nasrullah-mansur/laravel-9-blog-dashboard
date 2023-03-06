@@ -35,6 +35,16 @@
             </li>
           </ul>
         </li>
+
+
+        <li class=" nav-item ">
+          <a href="#"><i class="ft-box"></i><span class="menu-title">Sections</span></a>
+          <ul class="menu-content">
+            <li class="{{ Route::is('banner.*') ? 'active' : '' }}">
+                <a class="menu-item" href="{{ route('banner.edit') }}">Banner</a>
+            </li>
+          </ul>
+        </li>
         
         <li class=" nav-item {{ Route::is('admin.user.*') ? 'active' : ''}}">
             <a href="{{route('admin.user')}}"><i class="ft-box"></i><span class="menu-title">Users</span></a>

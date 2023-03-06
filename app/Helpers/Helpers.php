@@ -1,9 +1,11 @@
 <?php
 
+use App\Models\MenuItem;
 use App\Models\Appearance;
-use Intervention\Image\Facades\Image;
+use App\Models\Blog;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 
 const STATUS_ACTIVE = 'ACTIVE';
 const STATUS_INACTIVE = 'INACTIVE';
@@ -11,6 +13,7 @@ const SLIDER_PATH = 'uploaded_file/images/slider/';
 const LOGO_PATH = 'uploaded_file/images/logo/';
 const FAVICON_PATH = 'uploaded_file/images/favicon/';
 const APPEARANCE_PATH = 'uploaded_file/images/appearance/';
+const BANNER_PATH = 'uploaded_file/images/banner/';
 const BLOG_PATH = 'uploaded_file/images/blog/';
 const IMAGE_GALLERY_PATH = 'uploaded_file/images/gallery/';
 const REMOVE_MESSAGE = 'All relevant items will be removed permanently and You will not be able to recover this imaginary file!';
@@ -80,4 +83,52 @@ function generateRandomString($length = 4)
 function theme()
 {
     return $app = Appearance::first();
+}
+
+function main_menu()
+{
+    $main_menu = MenuItem::with('menuItem')
+        ->where('status', STATUS_ACTIVE)
+        ->where('set_location', 'header-menu')
+        ->where('p_id', '0')
+        ->orderBy('position')
+        ->get();
+    return $main_menu;
+}
+
+function footer_menu()
+{
+    $footer_menu = MenuItem::where('status', STATUS_ACTIVE)
+        ->where('set_location', 'footer-menu')
+        ->orderBy('position')
+        ->get();
+    return $footer_menu;
+}
+
+function category_menu()
+{
+    $category_menu = MenuItem::where('status', STATUS_ACTIVE)
+        ->where('set_location', 'category-menu')
+        ->orderBy('position')
+        ->get();
+    return $category_menu;
+}
+
+function latest_blog_gall()
+{
+    $blog = Blog::orderBy('created_at', 'DESC')
+        ->take(4)
+        ->get();
+
+    return $blog;
+}
+
+function logo()
+{
+    $app = Appearance::first();
+    if ($app) {
+        return $app->logo;
+    } else {
+        return 'front/images/brand-logo.png';
+    }
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('admin_name');
             $table->string('logo');
             $table->string('favicon');
+            $table->longText('address');
             $table->longText('meta')->nullable();
             $table->longText('custom_css')->nullable();
             $table->longText('custom_javascript')->nullable();

@@ -7,6 +7,7 @@ use App\Http\Controllers\Back\MenuController;
 use App\Http\Controllers\Back\UserController;
 use App\Http\Controllers\Back\BlogTagController;
 use App\Http\Controllers\Back\AppearanceController;
+use App\Http\Controllers\Back\BannerController;
 use App\Http\Controllers\Back\BlogCategoryController;
 use App\Http\Controllers\Back\ImageGalleryController;
 use App\Http\Controllers\Back\VideoGalleryController;
@@ -105,5 +106,9 @@ Route::middleware('auth')->group(function () {
         Route::get('gallery/image/edit/{id}', [ImageGalleryController::class, 'edit'])->name('image_gallery.edit');
         Route::post('gallery/image/update/{id}', [ImageGalleryController::class, 'update'])->name('image_gallery.update');
         Route::post('gallery/image/delete', [ImageGalleryController::class, 'delete'])->name('image_gallery.delete');
+
+        // Banner;
+        Route::get('banner', [BannerController::class, 'edit'])->name('banner.edit');
+        Route::post('banner', [BannerController::class, 'update'])->name('banner.update');
     });
 });

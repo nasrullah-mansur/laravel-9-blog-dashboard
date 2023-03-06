@@ -68,6 +68,14 @@
                 @endif
               </fieldset>
 
+              <fieldset class="form-group mb-0">
+                <label for="address">Address</label>
+                <textarea id="address" rows="5" class="form-control summernote" name="address" placeholder="Address">{{ theme() ? theme()->address : '' }}</textarea>
+                @if($errors->has('address'))
+                <small class="text-danger">{{ $errors->first('address') }}</small>
+                @endif
+              </fieldset>
+
               <fieldset class="form-group">
                 <label for="meta">Meta Tags</label>
                 <textarea id="meta" rows="5" class="form-control" name="meta" placeholder="Meta tags">{{ theme() ? theme()->meta : '' }}</textarea>
@@ -75,6 +83,8 @@
                 <small class="text-danger">{{ $errors->first('meta') }}</small>
                 @endif
               </fieldset>
+
+              
 
               <fieldset class="form-group">
                 <label for="custom_css">Custom CSS</label>

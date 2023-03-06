@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('video_galleries', function (Blueprint $table) {
             $table->id();
             $table->integer('video_gallery_category_id');
-            $table->string('iframe_link');
+            $table->longText('iframe_link');
             $table->string('status')->default(STATUS_INACTIVE);
             $table->timestamps();
         });

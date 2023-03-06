@@ -65,12 +65,12 @@
                                                 <label class="set_location" for="location-1">Header Navigation</label>
                                             </fieldset>
                                             <fieldset class="w-100 position-chose">
-                                                <input {{ $menu_set_location && $menu_set_location == 'main-menu' ? 'checked' : '' }} type="radio" class="set_location" value="main-menu" name="set_location" id="location-2" />
-                                                <label class="set_location" for="location-2">Main Navigation</label>
+                                                <input {{ $menu_set_location && $menu_set_location == 'main-menu' ? 'checked' : '' }} type="radio" class="set_location" value="footer-menu" name="set_location" id="location-2" />
+                                                <label class="set_location" for="location-2">Footer Navigation</label>
                                             </fieldset>
                                             <fieldset class="w-100 position-chose">
-                                                <input {{ $menu_set_location && $menu_set_location == 'footer-menu' ? 'checked' : '' }} type="radio" class="set_location" value="footer-menu" name="set_location" id="location-3" />
-                                                <label class="set_location" for="location-3">Footer Navigation</label>
+                                                <input {{ $menu_set_location && $menu_set_location == 'footer-menu' ? 'checked' : '' }} type="radio" class="set_location" value="category-menu" name="set_location" id="location-3" />
+                                                <label class="set_location" for="location-3">Category Navigation</label>
                                             </fieldset>
                                         </div>
                                     </div>
