@@ -43,6 +43,9 @@
             <li class="{{ Route::is('banner.*') ? 'active' : '' }}">
                 <a class="menu-item" href="{{ route('banner.edit') }}">Banner</a>
             </li>
+            <li class="{{ Route::is('specialties.*') ? 'active' : '' }}">
+                <a class="menu-item" href="{{ route('specialties.index') }}">Specialties</a>
+            </li>
           </ul>
         </li>
         
@@ -56,6 +59,10 @@
 
         <li class=" nav-item {{ Route::is('menu.*', 'menuItem.*') ? 'active' : ''}}">
             <a href="{{route('menu.index')}}"><i class="ft-box"></i><span class="menu-title">Menu</span></a>
+        </li>
+
+        <li class=" nav-item {{ Route::is('subscriber.*') ? 'active' : ''}}">
+            <a href="{{route('subscriber.index')}}"><i class="ft-box"></i><span class="menu-title">Subscribers</span></a>
         </li>
         
       </ul>

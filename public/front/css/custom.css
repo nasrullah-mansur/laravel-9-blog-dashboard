@@ -1,26 +1,27 @@
-.break-content {
-    display: -webkit-box;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;  
-  overflow: hidden;
+.home-story .slick-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
 }
 
-#gallery .gallery-slider .slick-arrow,
-.playlist-area .slick-arrow {
-    top: 100%;
-    left: 50%;
-    margin: 20px 5px 0;
-    transition: all .3s;
+.home-story .slick-dots li {
+    width: 15px;
+    height: 15px;
+    border: 1px solid #f74d6c;
+    border-radius: 50%;
+    margin: 0 3px;
+    cursor: pointer;
 }
 
-#gallery .gallery-slider .slick-prev,
-.playlist-area .slick-prev {
-    left: auto;
-    right: 50%;
+.home-story .slick-dots li button {
+    display: none;
 }
 
-#gallery .gallery-gap {
-    margin: 0;
-    padding: 0 5px;
-    box-sizing: border-box;
+.home-story .slick-dots li.slick-active {
+    background-color: #f74d6c;
+}
+
+.home-contact .text .direct-contact li a i {
+    padding-right: 8px;
 }

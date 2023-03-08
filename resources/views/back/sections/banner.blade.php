@@ -1,11 +1,11 @@
-@extends('back.layout.layout', [$title = 'Create a new blog']);
+@extends('back.layout.layout', [$title = 'Banner Section Update']);
 
 
 @section('content')
 <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title" id="basic-layout-square-controls">Create a new blog</h4>
+        <h4 class="card-title" id="basic-layout-square-controls">Banner Section Update</h4>
         <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
         <div class="heading-elements">
           <ul class="list-inline mb-0">
@@ -47,7 +47,7 @@
 
               <fieldset class="form-group">
                 <label for="content">Content</label>
-                <textarea id="content" rows="5" class="form-control" name="content" placeholder="content">{{ $banner ? $banner->content : '' }}</textarea>
+                <textarea id="content" rows="5" class="form-control summernote" name="content" placeholder="content">{{ $banner ? $banner->content : '' }}</textarea>
                 @if($errors->has('content'))
                 <small class="text-danger">{{ $errors->first('content') }}</small>
                 @endif

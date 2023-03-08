@@ -11,6 +11,8 @@ use App\Http\Controllers\Back\BannerController;
 use App\Http\Controllers\Back\BlogCategoryController;
 use App\Http\Controllers\Back\ImageGalleryController;
 use App\Http\Controllers\Back\VideoGalleryController;
+use App\Http\Controllers\SpecialtiesController;
+use App\Http\Controllers\SubscriberController;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -107,8 +109,25 @@ Route::middleware('auth')->group(function () {
         Route::post('gallery/image/update/{id}', [ImageGalleryController::class, 'update'])->name('image_gallery.update');
         Route::post('gallery/image/delete', [ImageGalleryController::class, 'delete'])->name('image_gallery.delete');
 
+        // Subscriber;
+        Route::get('/subscribers', [SubscriberController::class, 'index'])->name('subscriber.index');
+        Route::post('/subscriber/delete', [SubscriberController::class, 'delete'])->name('subscriber.delete');
+
+
+
+
+        // ********************** Sections ********************
+
         // Banner;
         Route::get('banner', [BannerController::class, 'edit'])->name('banner.edit');
         Route::post('banner', [BannerController::class, 'update'])->name('banner.update');
+
+        // Specialties;
+        Route::get('specialties/images', [SpecialtiesController::class, 'index'])->name('specialties.index');
+        Route::get('specialties/image/create', [SpecialtiesController::class, 'create'])->name('specialties.create');
+        Route::post('specialties/image/store', [SpecialtiesController::class, 'store'])->name('specialties.store');
+        Route::get('specialties/image/edit/{id}', [SpecialtiesController::class, 'edit'])->name('specialties.edit');
+        Route::post('specialties/image/update/{id}', [SpecialtiesController::class, 'update'])->name('specialties.update');
+        Route::post('specialties/image/delete', [SpecialtiesController::class, 'delete'])->name('specialties.delete');
     });
 });

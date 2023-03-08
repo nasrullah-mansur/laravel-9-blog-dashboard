@@ -1,60 +1,57 @@
-<!-- footer area start -->
-<footer id="footer">
-    <div class="container">
-      <div class="row f-widget-wrap">
-        <div class="col-md-6 col-lg-3">
-          <div class="footer-widget">
-            <a href="#" class="footer-logo">
-              <img src="{{ asset( theme() ? theme()->logo : 'front/images/brand-logo.png' ) }}" alt="Brand Logo" />
-            </a>
-            <div class="footer-widget-address">
-             {!! theme() ? theme()->address : '' !!}
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-2">
-          <div class="footer-widget">
-            <h5 class="footer-widget-title">Quick Links</h5>
-            <ul class="footer-widget-list">
-              @foreach (footer_menu() as $footer_menu)
-              <li>
-                <a class="{{ $footer_menu->class }}" target="{{ $footer_menu->target }}" href="{{ $footer_menu->link }}">{{ $footer_menu->label }}</a>
-              </li>
-              @endforeach
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="footer-widget">
-            <h5 class="footer-widget-title">Categories</h5>
-            <ul class="footer-widget-list">
-              @foreach (category_menu() as $category_menu)
-              <li>
-                <a class="{{ $category_menu->class }}" target="{{ $category_menu->target }}" href="{{ $category_menu->link }}">{{ $category_menu->label }}</a>
-              </li>
-              @endforeach
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <div
-            class="footer-widget-wrapper d-flex justify-content-lg-around f-last-widget"
-          >
-            <div class="footer-widget">
-              <h5 class="footer-widget-title">Latest Blog</h5>
-              <div class="row">
-                @foreach (latest_blog_gall() as $latest_blog_gall)
-                <div class="col-lg-6 col-md-6 col-sm-6 mb">
-                  <a class="d-block" href="">
-                    <img src="{{ asset($latest_blog_gall->image) }}" alt="{{ $latest_blog_gall->title }}">
-                  </a>
-                </div>
-                @endforeach
+<!-- Footer start -->
+<footer class="home-footer">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-3">
+              <div class="flow">
+                  <h4 class="flow">
+                      Flow <br />
+                      dr. md gaousul azam
+                  </h4>
+                  <ul class="footer-social">
+                      <li>
+                          <a href="#"><i class="fab fa-facebook-f"></i></a>
+                      </li>
+                      <li>
+                          <a href="#"><i class="fab fa-twitter"></i></a>
+                      </li>
+                      <li>
+                          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                      </li>
+                      <li>
+                          <a href="#"><i class="fab fa-youtube"></i></a>
+                      </li>
+                  </ul>
               </div>
-            </div>
           </div>
-        </div>
+          <div class="col-lg-3 col-md-4">
+              <ul class="footer-link">
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">Our Team</a></li>
+                  <li><a href="#">Services</a></li>
+                  <li><a href="#">Contact Us</a></li>
+              </ul>
+          </div>
+          <div class="col-lg-3 col-md-4">
+              <ul class="footer-link">
+                  <li><a href="#">About Us</a></li>
+                  <li><a href="#">Terms & Conditions</a></li>
+                  <li><a href="#">Faq</a></li>
+                  <li><a href="#">Privacy & Policy</a></li>
+              </ul>
+          </div>
+          <div class="col-lg-3 col-md-4">
+              <ul class="footer-link">
+                  <li><a href="#">About Us</a></li>
+                  <li><a href="#">Terms & Conditions</a></li>
+                  <li><a href="#">Faq</a></li>
+                  <li><a href="#">Privacy & Policy</a></li>
+              </ul>
+          </div>
       </div>
-    </div>
-  </footer>
-  <!-- footer area end -->
+  </div>
+  <div class="copyright">
+      <p>Copyrighted &copy; 2022 by Dr. MD Gaousul Azam</p>
+  </div>
+</footer>
+<!-- Footer end -->

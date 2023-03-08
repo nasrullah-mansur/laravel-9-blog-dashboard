@@ -4,10 +4,6 @@
 
   <body>
 
-    <a href="#" class="scroll-to-top" id="scroll-to-top">
-      <i class="fas fa-angle-up"></i>
-    </a>
-
     @include('front.components.header')
 
     <!-- ===================================== -->

@@ -117,7 +117,7 @@ function category_menu()
 function latest_blog_gall()
 {
     $blog = Blog::orderBy('created_at', 'DESC')
-        ->take(4)
+        ->take(6)
         ->get();
 
     return $blog;
