@@ -60,4 +60,10 @@ class FrontController extends Controller
 
         return view('front.blog.single', compact('blog', 'previous_blog', 'next_blog', 'other_blogs', 'categories'));
     }
+
+    // User profile;
+    public function profile()
+    {
+        return view('front.profile.profile');
+    }
 }

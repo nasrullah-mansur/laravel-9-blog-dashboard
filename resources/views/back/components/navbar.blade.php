@@ -6,7 +6,7 @@
           <li class="nav-item">
             <a class="navbar-brand" href="{{ url('/') }}" target="_blank">
               <img class="brand-logo" alt="stack admin logo" src="{{ asset('back/images/logo/stack-logo-light.png') }}">
-              <h2 class="brand-text">{{ theme() ? theme()->theme_name : 'Dashboard' }}</h2>
+              <h2 class="brand-text">Dashboard</h2>
             </a>
           </li>
           <li class="nav-item d-md-none">
@@ -28,7 +28,7 @@
               <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                 <span class="avatar avatar-online">
                   <img src="{{ asset('back/images/portrait/small/avatar-s-1.png') }}" alt="avatar"><i></i></span>
-                <span class="user-name">{{ Auth::user()->name }}</span>
+                <span class="user-name">{{ Auth::guard('admin')->user()->name }}</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" href="{{ route('admin.user.edit') }}"><i class="ft-user"></i> Edit Profile</a>

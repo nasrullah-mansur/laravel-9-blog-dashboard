@@ -7,6 +7,9 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 
+const ADMIN_ROLE = 'admin-role';
+const PATIENT_ROLE = 'patient-role';
+
 const STATUS_ACTIVE = 'ACTIVE';
 const STATUS_INACTIVE = 'INACTIVE';
 const SLIDER_PATH = 'uploaded_file/images/slider/';

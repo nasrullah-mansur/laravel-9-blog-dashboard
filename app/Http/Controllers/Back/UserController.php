@@ -27,12 +27,14 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
+            'phone' => 'required',
             'password' => 'required|min:8',
             'confirm' => 'required|same:password'
         ]);
 
         $user = new User();
         $user->name = $request->name;
+        $user->phone = $request->phone;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
 
@@ -43,7 +45,7 @@ class UserController extends Controller
 
     public function edit()
     {
-        $user = Auth::user();
+        $user = Auth::guard('admin')->user();
         return view('back.user.edit', compact('user'));
     }
 
@@ -52,11 +54,13 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'password' => 'required|min:8',
+            'phone' => 'required',
             'confirm' => 'required|same:password'
         ]);
 
-        $user = User::where('id', Auth::user()->id)->firstOrFail();
+        $user = User::where('id', Auth::guard('admin')->user()->id)->firstOrFail();
         $user->name = $request->name;
+        $user->phone = $request->phone;
         $user->password = Hash::make($request->password);
 
         $user->save();
@@ -68,7 +72,7 @@ class UserController extends Controller
     {
         $user = User::where('id', $request->id)->firstOrFail();
 
-        if ($request->id == Auth::user()->id) {
+        if ($request->id == Auth::guard('admin')->user()->id) {
             return $response = [
                 'type' => 'error',
                 'text' => 'Your can\'t remove your own account, Please contact admin'

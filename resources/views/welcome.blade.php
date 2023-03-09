@@ -1,5 +1,9 @@
 @extends('front.leyout.layout')
 
+@push('page_css')
+    <link rel="stylesheet" href="{{asset('front/css/pages/index.css')}}">
+@endpush
+
 @section('content')
 <!-- Banner start -->
 <section class="home-banner">

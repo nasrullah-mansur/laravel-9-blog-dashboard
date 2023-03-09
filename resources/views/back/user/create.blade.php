@@ -35,6 +35,13 @@
                 @endif
               </div>
               <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="phone" id="phone" class="form-control square {{ $errors->has('phone') ? 'is-invalid' : ''}}" placeholder="Phone" name="phone">
+                @if ($errors->has('phone'))
+                    <small class="text-danger">{{ $errors->first('phone') }}</small>
+                @endif
+              </div>
+              <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" class="form-control square {{ $errors->has('password') ? 'is-invalid' : ''}}" placeholder="Password" name="password">
                 @if ($errors->has('password'))

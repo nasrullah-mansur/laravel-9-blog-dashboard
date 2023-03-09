@@ -15,7 +15,7 @@
         <div class="container-fluid">
             <div class="menu-content">
                 <div class="logo">
-                    <a href="#">
+                    <a href="{{ url('/') }}">
                       <img src="{{ asset(logo()) }}" alt="{{ theme() ? theme()->theme_name : '' }}" />
                     </a>
                 </div>

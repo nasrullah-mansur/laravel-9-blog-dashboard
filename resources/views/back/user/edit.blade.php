@@ -28,6 +28,13 @@
                 @endif
               </div>
               <div class="form-group">
+                <label for="name">Phone</label>
+                <input value="{{$user->phone}}" type="text" id="name" class="form-control square {{ $errors->has('phone') ? 'is-invalid' : ''}} " placeholder="Phone" name="phone">
+                @if ($errors->has('phone'))
+                    <small class="text-danger">{{ $errors->first('phone') }}</small>
+                @endif
+              </div>
+              <div class="form-group">
                 <label for="email">Email</label>
                 <input value="{{$user->email}}" disabled type="email" id="email" class="form-control square" >
               </div>

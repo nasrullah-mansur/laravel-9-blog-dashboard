@@ -12,3 +12,8 @@ Route::get('/blog/{slug}', [FrontController::class, 'single_blog'])->name('singl
 
 // Subscriber;
 Route::post('subscriber/store', [SubscriberController::class, 'store'])->name('subscriber.store');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('profile', [FrontController::class, 'profile']);
+});
