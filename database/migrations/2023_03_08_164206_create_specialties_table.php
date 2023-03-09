@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('specialties', function (Blueprint $table) {
             $table->id();
+            $table->string('image');
+            $table->string('title');
+            $table->longText('link');
+            $table->string('status')->default(STATUS_ACTIVE);
             $table->timestamps();
         });
     }

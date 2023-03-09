@@ -46,6 +46,15 @@
             <li class="{{ Route::is('specialties.*') ? 'active' : '' }}">
                 <a class="menu-item" href="{{ route('specialties.index') }}">Specialties</a>
             </li>
+            <li class="{{ Route::is('training.*') ? 'active' : '' }}">
+                <a class="menu-item" href="{{ route('training.index') }}">Training</a>
+            </li>
+            <li class="{{ Route::is('award.*') ? 'active' : '' }}">
+                <a class="menu-item" href="{{ route('award.index') }}">Award</a>
+            </li>
+            <li class="{{ Route::is('testimonial.*') ? 'active' : '' }}">
+                <a class="menu-item" href="{{ route('testimonial.index') }}">Testimonial</a>
+            </li>
           </ul>
         </li>
         

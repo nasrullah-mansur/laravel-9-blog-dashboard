@@ -22,7 +22,7 @@
             @csrf
             <div class="form-body">
               <div class="form-group">
-                <label for="name">Title</label>
+                <label for="name">Name</label>
                 <input value="{{ $banner ? $banner->title : '' }}" type="text" id="name" class="form-control square {{ $errors->has('title') ? 'is-invalid' : ''}} " placeholder="Title" name="title">
                 @if ($errors->has('title'))
                     <small class="text-danger">{{ $errors->first('title') }}</small>
@@ -46,7 +46,7 @@
               </fieldset>
 
               <fieldset class="form-group">
-                <label for="content">Content</label>
+                <label for="content">Description</label>
                 <textarea id="content" rows="5" class="form-control summernote" name="content" placeholder="content">{{ $banner ? $banner->content : '' }}</textarea>
                 @if($errors->has('content'))
                 <small class="text-danger">{{ $errors->first('content') }}</small>

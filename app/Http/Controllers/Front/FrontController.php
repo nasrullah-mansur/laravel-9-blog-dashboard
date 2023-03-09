@@ -3,16 +3,26 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Award;
 use App\Models\Banner;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\ImageGallery;
+use App\Models\Specialties;
+use App\Models\Testimonial;
+use App\Models\Training;
 use App\Models\VideoGallery;
 
 class FrontController extends Controller
 {
     public function index()
     {
+        $specials = Specialties::where('status', STATUS_ACTIVE)->get();
+        $videos = VideoGallery::orderBy('created_at', 'DESC')->take(4)->get();
+        $testimonials = Testimonial::where('status', STATUS_ACTIVE)->get();
+        $trainings = Training::where('status', STATUS_ACTIVE)->get();
+        $awards = Award::where('status', STATUS_ACTIVE)->get();
+
         $banner = Banner::first();
         $blogs = Blog::with('category')->orderBy('created_at', 'DESC')->take(6)->get();
         $image_galleries = ImageGallery::orderBy('created_at', 'DESC')
@@ -22,7 +32,17 @@ class FrontController extends Controller
             ->take(10)
             ->get();
 
-        return view('welcome', compact('blogs', 'image_galleries', 'video_galleries', 'banner'));
+        return view('welcome', compact(
+            'blogs',
+            'image_galleries',
+            'video_galleries',
+            'banner',
+            'specials',
+            'videos',
+            'testimonials',
+            'trainings',
+            'awards'
+        ));
     }
 
     public function single_blog($slug)

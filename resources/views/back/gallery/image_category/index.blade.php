@@ -54,8 +54,7 @@
   </section>
 @endsection
 
-@push('db_js')
-    
+@push('db_js')  
     <script>
         
          // Delete Data;

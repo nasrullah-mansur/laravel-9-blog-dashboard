@@ -50,13 +50,9 @@
           </div>
           <div class="col-lg-6">
               <div class="text">
-                  <h1>Dr. Md. Gaousul Azam</h1>
-                  <p>
-                      MBBS, BCS(Health), MS(Neurosurgery) <br />
-                      Brain and Spine Surgeon <br />
-                      Dhaka Medical College Hospital
-                  </p>
-                  <a href="#">Learn More</a>
+                  <h1>{{ $banner ? $banner->title : 'Dr. Md. Gaousul Azam' }}</h1>
+                  {!! $banner ? $banner->content : '' !!}
+                  <a href="{{ $banner ? $banner->btn_link : '#' }}">{{ $banner ? $banner->btn_label : 'Know More' }}</a>
               </div>
           </div>
       </div>
@@ -71,56 +67,16 @@
           <h2 class="text-center pb-5">Specialties include</h2>
       </div>
       <div class="row">
-          <div class="col-lg-4 col-md-6">
-              <a href="#">
-                  <div class="service-item">
-                      <img src="{{ asset('front/images/service-1.png') }}" alt="img" />
-                      <h4>minimally invasive spine surgery</h4>
-                  </div>
-              </a>
-          </div>
-          <div class="col-lg-4 col-md-6">
-              <a href="#">
-                  <div class="service-item">
-                      <img src="{{ asset('front/images/service-2.png') }}" alt="img" />
-                      <h4>robotic-assisted spine surgery</h4>
-                  </div>
-              </a>
-          </div>
-          <div class="col-lg-4 col-md-6">
-              <a href="#">
-                  <div class="service-item">
-                      <img src="{{ asset('front/images/service-3.png') }}" alt="img" />
-                      <h4>non-fusion spine surgery</h4>
-                  </div>
-              </a>
-          </div>
-          <div class="col-lg-4 col-md-6">
-              <a href="#">
-                  <div class="service-item">
-                      <img src="{{ asset('front/images/service-4.png') }}" alt="img" />
-                      <h4>kyphoplasty for compression fractures</h4>
-                  </div>
-              </a>
-          </div>
-          <div class="col-lg-4 col-md-6">
-              <a href="#">
-                  <div class="service-item">
-                      <img src="{{ asset('front/images/service-5.png') }}" alt="img" />
-                      <h4>
-                          cervical, thoracic & lumbar spine surgery
-                      </h4>
-                  </div>
-              </a>
-          </div>
-          <div class="col-lg-4 col-md-6">
-              <a href="#">
-                  <div class="service-item">
-                      <img src="{{ asset('front/images/service-6.png') }}" alt="img" />
-                      <h4>brain surgery</h4>
-                  </div>
-              </a>
-          </div>
+        @foreach ($specials as $special)
+        <div class="col-lg-4 col-md-6">
+            <a href="{{ $special->link }}">
+                <div class="service-item">
+                    <img src="{{ asset($special->image) }}" alt="{{ $special->title }}" />
+                    <h4>{{ $special->title }}</h4>
+                </div>
+            </a>
+        </div>
+        @endforeach
       </div>
   </div>
 </section>
@@ -133,22 +89,15 @@
           <h2>Explore Your Knowledge</h2>
       </div>
       <div class="row">
-          <div class="col-lg-6">
-              <div class="img">
-                  <div class="ratio ratio-16x9">
-                      <iframe src="https://www.youtube.com/embed/v064RHK7m_Q" title="YouTube video"
-                          allowfullscreen></iframe>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-6">
-              <div class="img">
-                  <div class="ratio ratio-16x9">
-                      <iframe src="https://www.youtube.com/embed/1be1Gqa_4mw" title="YouTube video"
-                          allowfullscreen></iframe>
-                  </div>
-              </div>
-          </div>
+        @foreach ($videos as $video)
+        <div class="col-lg-6">
+            <div class="img">
+                <div class="ratio ratio-16x9">
+                    {!! $video->iframe_link !!}
+                </div>
+            </div>
+        </div>
+        @endforeach
       </div>
   </div>
 </section>
@@ -158,32 +107,22 @@
 <section class="home-story" style="background-image: url(https://drgaousulazam.com/public/front/images/backgraund-testimonial.jpg) ">
   <div class="container">
       <div class="testimonial-slider-wrapper" >
-          <div class="story-content">
+        @foreach ($testimonials as $testimonial)
+        <div class="story-content">
           <div class="img">
-              <img class="img-fluid w-100" src="https://drgaousulazam.com/public/front/images/story.jpg" alt="img">
+              <img class="img-fluid w-100" src="{{ asset($testimonial->image) }}" alt="{{$testimonial->title}}">
           </div>
           <div class="text">
               <div class="content">
-                  <h2>Dr. Md. Gaousul Azam</h2>
-                  <span> 20 December 2022 by Good Moonhwa hospital, Busan Korea</span>
-                  <p>Training program for Unilateral Biportal Endoscopy(UBE) spine surgery In accordance with the clinical demonstrations supervised by program chair surgeon Dr. Sang Kyu Son which was held at Busan Good Moonhwa Hospital.</p>
-                  <a href="#">Read the story</a>
+                  <h2>{{ $testimonial->title }}</h2>
+                  <span>{{ $testimonial->subtitle }}</span>
+                  <p>{!! $testimonial->description !!}</p>
+                  <a href="{{ $testimonial->btn_link }}">{{ $testimonial->btn_text }}</a>
               </div>
           </div>
-      </div>
-      <div class="story-content">
-          <div class="img">
-              <img class="img-fluid w-100" src="https://drgaousulazam.com/public/front/images/story.jpg" alt="img">
-          </div>
-          <div class="text">
-              <div class="content">
-                  <h2>Dr. Md. Gaousul Azam</h2>
-                  <span> 20 December 2022 by Good Moonhwa hospital, Busan Korea</span>
-                  <p>Training program for Unilateral Biportal Endoscopy(UBE) spine surgery In accordance with the clinical demonstrations supervised by program chair surgeon Dr. Sang Kyu Son which was held at Busan Good Moonhwa Hospital.</p>
-                  <a href="#">Read the story</a>
-              </div>
-          </div>
-      </div>
+        </div>
+        @endforeach
+      
       </div>
   </div>
 </section>
@@ -196,45 +135,15 @@
           <h2 class="pb-5">Training</h2>
       </div>
       <div class="training-content">
-          <div class="item">
-              <img src="{{ asset('front/images/t-1.png') }}" alt="img" />
-              <h4>Aiims Trained</h4>
-              <p>
-                  Dr Agrawal completed his neurosurgical residency training from AIIMS, Delhi, followed by a year
-                  long fellowship in endoscopic and pediatric neurosurgery in Vancouver, Canada.
-              </p>
-          </div>
-          <div class="item">
-              <img src="{{ asset('front/images/t-2.png') }}" alt="img" />
-              <h4>Gamma Knife Surgery</h4>
-              <p>
-                  Trained in Gamma Knife Surgery from Cleveland Clinic, USA and has performed more than 1000 Gamma
-                  knife surgeries till date.
-              </p>
-          </div>
-          <div class="item">
-              <img src="{{ asset('front/images/t-3.png') }}" alt="img" />
-              <h4>Spine And Spinal Cord Injury</h4>
-              <p>
-                  He is also especially trained in spinal surgery and spinal interumentation and has recieved the
-                  prestigous AO spine fellowship from BAsel, Switzerland.
-              </p>
-          </div>
-          <div class="item">
-              <img src="{{ asset('front/images/t-4.png') }}" alt="img" />
-              <h4>Trauma And Critical Care</h4>
-              <p>
-                  Dr Agrawal has also been trained in trauma in Critical care and has been a fellow at University
-                  of Michigan, USA.
-              </p>
-          </div>
-          <div class="item">
-              <img src="{{ asset('front/images/t-5.png') }}" alt="img" />
-              <h4>TATA DBT Innovation Fellow</h4>
-              <p>
-                  Dr Agrawal has been Awarded the TATA DBT Innovation fellowship for a period of 3 years.
-              </p>
-          </div>
+        @foreach ($trainings as $training)
+        <div class="item">
+            <img src="{{ asset($training->image) }}" alt="{{$training->title}}" />
+            <h4>{{ $training->title }}</h4>
+            <p>
+                {!! $training->description !!}
+            </p>
+        </div>
+        @endforeach
       </div>
   </div>
 </section>
@@ -249,26 +158,12 @@
   </div>
   <div class="award-content">
       <div class="awards-slider">
-          <div class="item">
-              <img src="{{ asset('front/images/3.jpg') }}" alt="img" />
-              <h5>Lorem ipsum dolor sit amet consectetur.</h5>
-          </div>
-          <div class="item">
-              <img src="{{ asset('front/images/4.jpg') }}" alt="img" />
-              <h5>Lorem ipsum dolor sit amet consectetur.</h5>
-          </div>
-          <div class="item">
-              <img src="{{ asset('front/images/5.jpg') }}" alt="img" />
-              <h5>Lorem ipsum dolor sit amet consectetur.</h5>
-          </div>
-          <div class="item">
-              <img src="{{ asset('front/images/6.jpg') }}" alt="img" />
-              <h5>Lorem ipsum dolor sit amet consectetur.</h5>
-          </div>
-          <div class="item">
-              <img src="{{ asset('front/images/8.jpg') }}" alt="img" />
-              <h5>Lorem ipsum dolor sit amet consectetur.</h5>
-          </div>
+        @foreach ($awards as $award)
+        <div class="item">
+            <img src="{{ asset($award->image) }}" alt="{{$award->title}}" />
+            
+        </div>
+        @endforeach
       </div>
   </div>
 </section>

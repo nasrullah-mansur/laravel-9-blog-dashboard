@@ -15,6 +15,10 @@ const FAVICON_PATH = 'uploaded_file/images/favicon/';
 const APPEARANCE_PATH = 'uploaded_file/images/appearance/';
 const BANNER_PATH = 'uploaded_file/images/banner/';
 const BLOG_PATH = 'uploaded_file/images/blog/';
+const SPECIALTIES_PATH = 'uploaded_file/images/specials/';
+const TRAINING_PATH = 'uploaded_file/images/training/';
+const TESTIMONIAL_PATH = 'uploaded_file/images/testimonial/';
+const AWARD_PATH = 'uploaded_file/images/award/';
 const IMAGE_GALLERY_PATH = 'uploaded_file/images/gallery/';
 const REMOVE_MESSAGE = 'All relevant items will be removed permanently and You will not be able to recover this imaginary file!';
 

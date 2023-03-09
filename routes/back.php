@@ -7,9 +7,12 @@ use App\Http\Controllers\Back\MenuController;
 use App\Http\Controllers\Back\UserController;
 use App\Http\Controllers\Back\BlogTagController;
 use App\Http\Controllers\Back\AppearanceController;
+use App\Http\Controllers\Back\AwardController;
 use App\Http\Controllers\Back\BannerController;
 use App\Http\Controllers\Back\BlogCategoryController;
 use App\Http\Controllers\Back\ImageGalleryController;
+use App\Http\Controllers\Back\TestimonialController;
+use App\Http\Controllers\Back\TrainingController;
 use App\Http\Controllers\Back\VideoGalleryController;
 use App\Http\Controllers\SpecialtiesController;
 use App\Http\Controllers\SubscriberController;
@@ -129,5 +132,30 @@ Route::middleware('auth')->group(function () {
         Route::get('specialties/image/edit/{id}', [SpecialtiesController::class, 'edit'])->name('specialties.edit');
         Route::post('specialties/image/update/{id}', [SpecialtiesController::class, 'update'])->name('specialties.update');
         Route::post('specialties/image/delete', [SpecialtiesController::class, 'delete'])->name('specialties.delete');
+
+
+        // Training;
+        Route::get('training/images', [TrainingController::class, 'index'])->name('training.index');
+        Route::get('training/image/create', [TrainingController::class, 'create'])->name('training.create');
+        Route::post('training/image/store', [TrainingController::class, 'store'])->name('training.store');
+        Route::get('training/image/edit/{id}', [TrainingController::class, 'edit'])->name('training.edit');
+        Route::post('training/image/update/{id}', [TrainingController::class, 'update'])->name('training.update');
+        Route::post('training/image/delete', [TrainingController::class, 'delete'])->name('training.delete');
+
+        // Award;
+        Route::get('award/images', [AwardController::class, 'index'])->name('award.index');
+        Route::get('award/image/create', [AwardController::class, 'create'])->name('award.create');
+        Route::post('award/image/store', [AwardController::class, 'store'])->name('award.store');
+        Route::get('award/image/edit/{id}', [AwardController::class, 'edit'])->name('award.edit');
+        Route::post('award/image/update/{id}', [AwardController::class, 'update'])->name('award.update');
+        Route::post('award/image/delete', [AwardController::class, 'delete'])->name('award.delete');
+
+        // Testimonial;
+        Route::get('testimonial/images', [TestimonialController::class, 'index'])->name('testimonial.index');
+        Route::get('testimonial/image/create', [TestimonialController::class, 'create'])->name('testimonial.create');
+        Route::post('testimonial/image/store', [TestimonialController::class, 'store'])->name('testimonial.store');
+        Route::get('testimonial/image/edit/{id}', [TestimonialController::class, 'edit'])->name('testimonial.edit');
+        Route::post('testimonial/image/update/{id}', [TestimonialController::class, 'update'])->name('testimonial.update');
+        Route::post('testimonial/image/delete', [TestimonialController::class, 'delete'])->name('testimonial.delete');
     });
 });

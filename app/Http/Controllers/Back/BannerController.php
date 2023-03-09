@@ -25,6 +25,9 @@ class BannerController extends Controller
                 'content' => 'required',
                 'btn_label' => 'required',
                 'btn_link' => 'required'
+            ], [
+                'title.required' => 'Name field is required',
+                'content.required' => 'Description field is required'
             ]);
 
             $banner = new Banner();
@@ -36,6 +39,9 @@ class BannerController extends Controller
                 'content' => 'required',
                 'btn_label' => 'required',
                 'btn_link' => 'required'
+            ], [
+                'title.required' => 'Name field is required',
+                'content.required' => 'Description field is required'
             ]);
             if ($request->hasFile('image')) {
                 $banner->image = ImageUpload($request->image, BANNER_PATH);
