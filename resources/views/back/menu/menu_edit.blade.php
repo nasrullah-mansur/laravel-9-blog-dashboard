@@ -65,12 +65,16 @@
                                                 <label class="set_location" for="location-1">Header Navigation</label>
                                             </fieldset>
                                             <fieldset class="w-100 position-chose">
-                                                <input {{ $menu_set_location && $menu_set_location == 'main-menu' ? 'checked' : '' }} type="radio" class="set_location" value="footer-menu" name="set_location" id="location-2" />
-                                                <label class="set_location" for="location-2">Footer Navigation</label>
+                                                <input {{ $menu_set_location && $menu_set_location == 'footer-left' ? 'checked' : '' }} type="radio" class="set_location" value="footer-left" name="set_location" id="location-2" />
+                                                <label class="set_location" for="location-2">Footer Left</label>
                                             </fieldset>
                                             <fieldset class="w-100 position-chose">
-                                                <input {{ $menu_set_location && $menu_set_location == 'footer-menu' ? 'checked' : '' }} type="radio" class="set_location" value="category-menu" name="set_location" id="location-3" />
-                                                <label class="set_location" for="location-3">Category Navigation</label>
+                                                <input {{ $menu_set_location && $menu_set_location == 'footer-middle' ? 'checked' : '' }} type="radio" class="set_location" value="footer-middle" name="set_location" id="location-3" />
+                                                <label class="set_location" for="location-3">Footer Middle</label>
+                                            </fieldset>
+                                            <fieldset class="w-100 position-chose">
+                                                <input {{ $menu_set_location && $menu_set_location == 'footer-right' ? 'checked' : '' }} type="radio" class="set_location" value="footer-right" name="set_location" id="location-4" />
+                                                <label class="set_location" for="location-4">Footer Right</label>
                                             </fieldset>
                                         </div>
                                     </div>

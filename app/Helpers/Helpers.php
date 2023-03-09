@@ -100,19 +100,28 @@ function main_menu()
     return $main_menu;
 }
 
-function footer_menu()
+function footer_left()
 {
     $footer_menu = MenuItem::where('status', STATUS_ACTIVE)
-        ->where('set_location', 'footer-menu')
+        ->where('set_location', 'footer-left')
         ->orderBy('position')
         ->get();
     return $footer_menu;
 }
 
-function category_menu()
+function footer_middle()
 {
     $category_menu = MenuItem::where('status', STATUS_ACTIVE)
-        ->where('set_location', 'category-menu')
+        ->where('set_location', 'footer-middle')
+        ->orderBy('position')
+        ->get();
+    return $category_menu;
+}
+
+function footer_right()
+{
+    $category_menu = MenuItem::where('status', STATUS_ACTIVE)
+        ->where('set_location', 'footer-right')
         ->orderBy('position')
         ->get();
     return $category_menu;
