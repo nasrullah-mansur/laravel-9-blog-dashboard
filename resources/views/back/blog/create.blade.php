@@ -80,6 +80,22 @@
                 @endif
               </fieldset>
 
+              <fieldset class="form-group">
+                <label for="custom_css">Custom CSS (optional)</label>
+                <textarea id="custom_css" rows="5" class="form-control" name="custom_css" placeholder="Custom CSS"></textarea>
+                @if($errors->has('custom_css'))
+                <small class="text-danger">{{ $errors->first('custom_css') }}</small>
+                @endif
+              </fieldset>
+
+              <fieldset class="form-group">
+                <label for="custom_js">Custom JavaScript (optional)</label>
+                <textarea id="custom_js" rows="5" class="form-control" name="custom_js" placeholder="Custom JavaScript"></textarea>
+                @if($errors->has('custom_js'))
+                <small class="text-danger">{{ $errors->first('custom_js') }}</small>
+                @endif
+              </fieldset>
+
               <div class="form-group">
                 <label>Status</label>
                 <select class="form-control" name="status">

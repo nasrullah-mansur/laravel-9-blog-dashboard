@@ -15,6 +15,8 @@
     @stack('page_css')
     <link rel="stylesheet" href="{{ asset('front/css/custom.css') }}" />
 
+    @stack('custom_page_css')
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ theme() ? asset(theme()->favicon) : '' }}" type="image/x-icon">
   </head>

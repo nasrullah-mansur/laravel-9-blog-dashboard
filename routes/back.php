@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdvertizementController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Back\BlogController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\Back\ImageGalleryController;
 use App\Http\Controllers\Back\TestimonialController;
 use App\Http\Controllers\Back\TrainingController;
 use App\Http\Controllers\Back\VideoGalleryController;
+use App\Http\Controllers\BlogSidebarController;
 use App\Http\Controllers\SpecialtiesController;
 use App\Http\Controllers\SubscriberController;
 
@@ -162,6 +164,19 @@ Route::middleware(['auth'])->group(function () {
             Route::get('testimonial/image/edit/{id}', [TestimonialController::class, 'edit'])->name('testimonial.edit');
             Route::post('testimonial/image/update/{id}', [TestimonialController::class, 'update'])->name('testimonial.update');
             Route::post('testimonial/image/delete', [TestimonialController::class, 'delete'])->name('testimonial.delete');
+
+            // Blog sidebar;
+            Route::get('blog/sidebar', [BlogSidebarController::class, 'index'])->name('blog.sidebar');
+            Route::post('blog/sidebar', [BlogSidebarController::class, 'update'])->name('blog.sidebar.update');
+
+
+            // Advertizement;
+            Route::get('advertizement/images', [AdvertizementController::class, 'index'])->name('advertizement.index');
+            Route::get('advertizement/image/create', [AdvertizementController::class, 'create'])->name('advertizement.create');
+            Route::post('advertizement/image/store', [AdvertizementController::class, 'store'])->name('advertizement.store');
+            Route::get('advertizement/image/edit/{id}', [AdvertizementController::class, 'edit'])->name('advertizement.edit');
+            Route::post('advertizement/image/update/{id}', [AdvertizementController::class, 'update'])->name('advertizement.update');
+            Route::post('advertizement/image/delete', [AdvertizementController::class, 'delete'])->name('advertizement.delete');
         });
     });
 });

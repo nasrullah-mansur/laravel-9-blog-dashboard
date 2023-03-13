@@ -55,6 +55,12 @@
             <li class="{{ Route::is('testimonial.*') ? 'active' : '' }}">
                 <a class="menu-item" href="{{ route('testimonial.index') }}">Testimonial</a>
             </li>
+            <li class="{{ Route::is('blog.sidebar.*') ? 'active' : '' }}">
+                <a class="menu-item" href="{{ route('blog.sidebar') }}">Blog Sidebar</a>
+            </li>
+            <li class="{{ Route::is('advertizement.*') ? 'active' : '' }}">
+                <a class="menu-item" href="{{ route('advertizement.index') }}">Advertizement</a>
+            </li>
           </ul>
         </li>
         

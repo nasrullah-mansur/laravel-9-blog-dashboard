@@ -1,183 +1,152 @@
 @extends('front.leyout.layout', [$title = $blog->title])
 
+@push('page_css')
+    <link rel="stylesheet" href="{{asset('front/css/pages/blog.css')}}">
+@endpush
+
+@if ($blog->custom_css)
+@push('custom_page_css')
+    <style>
+        {!! $blog->custom_css !!}
+    </style>
+@endpush
+@endif
+
+@if ($blog->custom_js)
+@push('custom_page_js')
+    <script>
+        {!! $blog->custom_js !!}
+    </script>
+@endpush
+@endif
+
 @section('content')
-    <!-- ===================================== -->
-      <!-- banner area start -->
-      <section id="blog-banner-area">
-        <div class="blog-banner-item">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="blog-banner-content">
-                  <div class="blog-banner-title">
-                    <h3 class="text-center">{{ $blog->title }}</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    <!-- banner area end -->
-    <!-- ===================================== -->
-    <!-- Blog-deatils area start -->
-    <section id="blog-details">
-      <div class="container">
-          <div class="blog-details-area">
-            <div class="row">
-              <div class="col-lg-8">
-                <div class="blog-details-para">
-                  <div class="details-head">
-                    <div class="blog-heading">
+<!-- Page banner start -->
+<div class="page-banner" style="background-image: url({{ asset('front/images/banner-bg.jpg') }});">
+  <div class="container">
+      <h2>{{ $blog->title }}</h2>
+  </div>
+</div>
+<!-- Page banner end -->
+   <!-- Blog section start -->
+   <section class="blog-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="single-blog">
+                    <div class="single-blog-title">
                         <h2>{{ $blog->title }}</h2>
-                    </div>
-                    <div class="details-date">
-                      <a href="#">{{ $blog->category->title }}</a>
+                        <a href="{{ route('blog.by.category', $blog->category->slug) }}" class="category">
+                          {{$blog->category->title}}
+                      </a>
                       <span class="time">
-                        <i class="fas fa-calendar-week"></i>
-                         {{$blog->created_at->format('d M Y')}}
+                          <i class="far fa-calendar"></i>
+                          {{$blog->created_at->format('d M Y')}}
                       </span>
                     </div>
-                  </div>
-                  <div class="details-image">
-                    <img src="{{ asset($blog->image) }}" alt="{{$blog->title}}" />
-                  </div>
-                  <div class="blog-box">
-                    <p>{!! $blog->content !!}</p>
+                    <img class="w-100 img-fluid" src="{{ asset($blog->image) }}" alt="{{$blog->title}}">
+                    <div class="description">
+                        <p>{{$blog->content}}</p>
+                    </div>
 
-                    {!! $blog->details !!}
-                    
-                    <div class="details-tag">
-                        @foreach ($blog->tags as $tag_1)
-                        <a href="#">#{{ $tag_1->title }}</a>
-                        @endforeach
-                      
+                    <div class="details">
+                        {!! $blog->details !!}
                     </div>
-                    <div class="details-pagenation">
-                      <div class="row">
-                        @if ($previous_blog)
-                        <div class="col-lg-6 col-md-6">
-                          <div class="prev">
-                            <span>Previous Post</span>
-                            <p>
+
+                    <div class="next-prev">
+                        <ul>
+                          @if ($previous_blog)
+                          <li>
                               <a href="{{ route('single.blog', $previous_blog->slug) }}">
-                                {{ $previous_blog->title }}				
+                                  <span>Previous blog</span>
+                                  <p>{{ $previous_blog->title }}</p>
                               </a>
-                            </p>
-                          </div>    
-                        </div>
-                        @endif
-                        @if ($next_blog)
-                        <div class="col-lg-6 col-md-6">
-                          <div class="prev next">
-                            <span>Next Post</span>
-                            <p>
+                          </li>
+                          @endif
+                          @if ($next_blog)
+                          <li class="text-lg-end">
                               <a href="{{route('single.blog', $next_blog->slug)}}">
-                                {{$next_blog->title}}				
+                                  <span>Next blog</span>
+                                  <p>{{ $next_blog->title }}</p>
                               </a>
-                            </p>
-                          </div>    
-                        </div>
-                        @endif
-                      </div>
+                          </li>
+                          @endif
+                        </ul>
                     </div>
-                    <div id="blog">
-                        <div class="blog-items-wrapper">
-                          <div class="row">
-                            @foreach ($other_blogs as $other_blog)
-                            <div class="col-md-6 col-lg-4">
-                              <div class="blog-item">
-                                <div class="blog-image">
-                                  <a href="{{ route('single.blog', $other_blog->slug) }}">
-                                    <img src="{{ asset($other_blog->image) }}" alt="blog img"/>
-                                  </a>
+
+                    <div class="also-like">
+                        <h3>You may also like</h3>
+                        <div class="row">
+                          @foreach ($other_blogs as $like)
+                          <div class="col-lg-4">
+                            <div class="blog-item">
+                                <div class="img">
+                                    <a href="{{route('single.blog', $like->slug)}}">
+                                        <img class="img-fluid w-100" src="{{ asset($like->image) }}" alt="{{$like->title}}" />
+                                    </a>
                                 </div>
-              
-                                <div class="blog-details">
-                                  <div class="blog-head d-flex">
-                                    <div class="b-tag">
-                                      <a href="#">{{ $other_blog->category->title }}</a>
+                                <div class="blog-text">
+                                    <div class="blog-content">
+                                        <h3 class="mb-0">
+                                            <a href="{{route('single.blog', $like->slug)}}">{{ $like->title }}</a>
+                                        </h3>
                                     </div>
-                                    <div class="blog-time">
-                                      <span>{{ $other_blog->created_at->format('d M Y') }}</span>
-                                    </div>  
-                                  </div>
-                                  <div class="blog-title">
-                                    <h2>
-                                      <a href="{{ route('single.blog', $other_blog->slug) }}">
-                                        {{ $other_blog->title }}
-                                      </a>  
-                                    </h2>
-                                  </div>
-                                  <div class="read-btn">
-                                    <a href="{{ route('single.blog', $other_blog->slug) }}" type="button" class="btn btn-primary">Read More</a>
-                                  </div>
                                 </div>
-                              </div>
                             </div>
-                            @endforeach
-                          </div>
                         </div>
-                      </div>
-                  </div>      
-                </div>
-              </div>
-              <div class="col-lg-4" >
-                <div class="details-blog">
-                  
-                  <div class="short-catagory">
-                    <div class="short-catagory-heading">
-                      <h3>Explore Topics</h3>
-                    </div>
-                    <div class="short-catagory-list">
-                      <ul>
-                        @foreach ($categories as $category)
-                        <li>
-                          <i class="fas fa-arrow-right"></i>
-                          <a href="#">{{ $category->title }}</a>
-                           <span>({{ $category->blogs->count() }})</span>
-                        </li>
-                        @endforeach
                         
-                      </ul>
+                          @endforeach
+                        </div>
                     </div>
-                  </div>
-                  <div class="short-news">
-                    <div class="short-news-para">
-                      <h4>Newsletter</h4> 
-                    </div>
-                    <form action="{{ route('subscriber.store') }}" method="POST">
-                    <div class="short-news-mail">
-                        @csrf
-                        <input type="email" name="email" placeholder="Your email address">
-                        @if($errors->has('email'))
-                        <small class="text-danger d-block text-start">{{$errors->first('email')}} </small>
-                        @endif
-                        @if (Session::has('success'))
-                        <small class="text-primary d-block text-start">Thank you for becoming a subscriber.</small>
-                        @endif
-                      </div>
-                      <div class="short-news-btn">
-                        <button class="news-btn" type="submit">Subscribe</button>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="short-tag">
-                    <div class="short-tag-head">
-                      <h4>Tag Cloud</h4>
-                    </div>
-                    <div class="short-blog-tag">
-                        @foreach ($blog->tags as $tag_2)
-                        <a href="#">#{{$tag_2->title}}</a>
-                        @endforeach
-                    </div>
-                  </div>
                 </div>
-              </div>
             </div>
+            <div class="col-lg-3">
+              <div class="right-sidebar">
+                  @if ($sidebar)
+                  <div class="sidebar-item">
+                      <div class="cta">
+                          <img src="{{ asset($sidebar->image) }}" alt="{{$sidebar->content}}" />
+                          <p>{{ $sidebar->content }}</p>
+                          <a href="{{$sidebar->btn_link}}">{{$sidebar->btn_text}}</a>
+                      </div>
+                  </div>
+                  @endif
+                  <div class="sidebar-item">
+                      <div class="category">
+                          <h4>Categories</h4>
+                          <ul>
+                              @foreach ($categories as $category)
+                              <li>
+                                  <a href="{{route('blog.by.category', $category->slug)}}">
+                                      <span>{{ $category->title }}</span>
+                                      <span>({{$category->blogs->count()}})</span>
+                                  </a>
+                              </li>
+                              @endforeach
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="sidebar-item">
+                      <div class="tags">
+                          <h4>Tags</h4>
+                          <ul>
+                              @foreach ($blog->tags as $tag)
+                              <li><a href="{{ route('blog.by.tag', $tag->slug) }}">#{{$tag->title}}</a></li>
+                              @endforeach
+                          </ul>
+                      </div>
+                  </div>
+                  @foreach (single_blog_add() as $add)
+                    <div class="sidebar-item">
+                        <a href="{{$add->link}}" class="add">
+                            <img class="img-fluid w-100" src="{{asset($add->image)}}" alt="{{$add->title}}" />
+                        </a>
+                    </div>
+                    @endforeach
+              </div>
+          </div>
         </div>
-      </div>
-    </section>
-    <!-- Blog-deatils area end -->
-    <!-- ===================================== -->
+    </div>
+</section>
+<!-- Blog section end -->
 @endsection

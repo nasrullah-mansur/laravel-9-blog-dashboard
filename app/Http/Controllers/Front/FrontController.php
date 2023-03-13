@@ -7,6 +7,8 @@ use App\Models\Award;
 use App\Models\Banner;
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\BlogSidebar;
+use App\Models\BlogTag;
 use App\Models\ImageGallery;
 use App\Models\Specialties;
 use App\Models\Testimonial;
@@ -45,6 +47,49 @@ class FrontController extends Controller
         ));
     }
 
+    public function blogs()
+    {
+        $title = 'Our Blogs';
+        $blogs = Blog::where('status', STATUS_ACTIVE)->orderBy('created_at', 'desc')->paginate(9);
+        $sidebar = BlogSidebar::first();
+        $categories = BlogCategory::with('blogs')->get();
+        $tags = BlogTag::all();
+        return view('front.blog.blog', compact('blogs', 'title', 'sidebar', 'categories', 'tags'));
+    }
+
+    public function blog_by_category($slug)
+    {
+        $blogCat = BlogCategory::where('slug', $slug)->firstOrFail();
+        $title = $blogCat->title;
+
+        $blogs = Blog::where('status', STATUS_ACTIVE)
+            ->where('blog_category_id', $blogCat->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(9);
+        $sidebar = BlogSidebar::first();
+        $categories = BlogCategory::with('blogs')->get();
+        $tags = BlogTag::all();
+        return view('front.blog.blog', compact('blogs', 'title', 'sidebar', 'categories', 'tags'));
+    }
+
+    public function blog_by_tag($slug)
+    {
+        $tag = BlogTag::where('slug', $slug)->firstOrFail();
+        $title = $tag->title;
+
+        $blogs = $tag->blogs()
+            ->where('status', STATUS_ACTIVE)
+            ->orderBy('created_at', 'desc')
+            ->paginate(9);
+
+        $sidebar = BlogSidebar::first();
+        $categories = BlogCategory::with('blogs')->get();
+        $tags = BlogTag::inRandomOrder()
+            ->take(15)
+            ->get();
+        return view('front.blog.blog', compact('blogs', 'title', 'sidebar', 'categories', 'tags'));
+    }
+
     public function single_blog($slug)
     {
         $blog = Blog::where('slug', $slug)->firstOrFail();
@@ -58,7 +103,9 @@ class FrontController extends Controller
         $other_blogs = Blog::where('slug', '!=', $slug)->take(3)->get();
         $categories = BlogCategory::with('blogs')->get();
 
-        return view('front.blog.single', compact('blog', 'previous_blog', 'next_blog', 'other_blogs', 'categories'));
+        $sidebar = BlogSidebar::first();
+
+        return view('front.blog.single', compact('blog', 'previous_blog', 'next_blog', 'other_blogs', 'categories', 'sidebar'));
     }
 
     // User profile;

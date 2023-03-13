@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Advertizement;
 use App\Models\MenuItem;
 use App\Models\Appearance;
 use App\Models\Blog;
@@ -21,6 +22,8 @@ const BLOG_PATH = 'uploaded_file/images/blog/';
 const SPECIALTIES_PATH = 'uploaded_file/images/specials/';
 const TRAINING_PATH = 'uploaded_file/images/training/';
 const TESTIMONIAL_PATH = 'uploaded_file/images/testimonial/';
+const CTA_PATH = 'uploaded_file/images/cta/';
+const ADD_PATH = 'uploaded_file/images/add/';
 const AWARD_PATH = 'uploaded_file/images/award/';
 const IMAGE_GALLERY_PATH = 'uploaded_file/images/gallery/';
 const REMOVE_MESSAGE = 'All relevant items will be removed permanently and You will not be able to recover this imaginary file!';
@@ -147,4 +150,26 @@ function logo()
     } else {
         return 'front/images/brand-logo.png';
     }
+}
+
+function blog_add()
+{
+    $adds = Advertizement::where('position', 'blog-page')
+        ->where('status', STATUS_ACTIVE)
+        ->inRandomOrder()
+        ->take(1)
+        ->get();
+
+    return $adds;
+}
+
+function single_blog_add()
+{
+    $adds = Advertizement::where('position', 'single-blog-page')
+        ->where('status', STATUS_ACTIVE)
+        ->inRandomOrder()
+        ->take(1)
+        ->get();
+
+    return $adds;
 }

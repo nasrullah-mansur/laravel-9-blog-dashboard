@@ -11,7 +11,7 @@
                         <li>
                             <fieldset>
                                 <input type="checkbox" id="pages-1" />
-                                <label data-menu-id="{{ $menu_id }}" data-label="Home" data-slug="/home" for="pages-1">home</label>
+                                <label data-menu-id="{{ $menu_id }}" data-label="Home" data-slug="{{url('/')}}" for="pages-1">home</label>
                             </fieldset>
                         </li>
                         <li>
@@ -24,14 +24,14 @@
                         <li>
                             <fieldset>
                                 <input type="checkbox" id="pages-3" />
-                                <label data-menu-id="{{ $menu_id }}" data-label="Blog" data-slug="/blog" for="pages-3">Blog</label>
+                                <label data-menu-id="{{ $menu_id }}" data-label="Blog" data-slug="{{ route('front.blog') }}" for="pages-3">Blog</label>
                             </fieldset>
                         </li>
 
                         <li>
                             <fieldset>
                                 <input type="checkbox" id="pages-4" />
-                                <label data-menu-id="{{ $menu_id }}" data-label="Video" data-slug="/video" for="pages-4">Video</label>
+                                <label data-menu-id="{{ $menu_id }}" data-label="Video" data-slug="/gallery" for="pages-4">Gallery</label>
                             </fieldset>
                         </li>
 

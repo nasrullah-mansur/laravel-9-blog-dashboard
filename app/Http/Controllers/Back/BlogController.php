@@ -32,7 +32,10 @@ class BlogController extends Controller
             'image' => 'required|mimes:png,jpg',
             'content' => 'required',
             'details' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'blog_category_id' => 'required'
+        ], [
+            'blog_category_id.required' => 'The blog category field is required.'
         ]);
 
         $blog = new Blog();
@@ -42,6 +45,8 @@ class BlogController extends Controller
         $blog->thumbnail = 'image thumbnail';
         $blog->content = $request->content;
         $blog->details = $request->details;
+        $blog->custom_css = $request->custom_css;
+        $blog->custom_js = $request->custom_js;
         $blog->blog_category_id = $request->blog_category_id;
         $blog->status = $request->status;
 
@@ -75,7 +80,10 @@ class BlogController extends Controller
             'image' => 'nullable|mimes:png,jpg',
             'content' => 'required',
             'details' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'blog_category_id' => 'required'
+        ], [
+            'blog_category_id.required' => 'The blog category field is required.'
         ]);
 
         $blog = Blog::where('id', $id)->firstOrFail();
@@ -91,6 +99,8 @@ class BlogController extends Controller
         $blog->details = $request->details;
         $blog->blog_category_id = $request->blog_category_id;
         $blog->status = $request->status;
+        $blog->custom_css = $request->custom_css;
+        $blog->custom_js = $request->custom_js;
 
         $blog->save();
 

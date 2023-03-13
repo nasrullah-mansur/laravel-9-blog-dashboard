@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('status');
             $table->longText('content');
             $table->longText('details');
+            $table->longText('custom_css')->nullable();
+            $table->longText('custom_js')->nullable();
             $table->timestamps();
         });
     }
