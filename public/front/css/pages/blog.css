@@ -24,6 +24,24 @@
   text-align: center;
 }
 
+@media (max-width: 991.98px) {
+  .page-banner h2 {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .page-banner h2 {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 575px) {
+  .page-banner h2 {
+    font-size: 28px;
+  }
+}
+
 .pagination {
   justify-content: center;
   margin-top: 30px;
@@ -190,6 +208,14 @@ overflow: hidden;
   font-size: 26px;
   line-height: 36px;
 }
+
+@media (max-width: 767.98px) {
+  .single-blog .single-blog-title h2 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
 .single-blog .single-blog-title a {
   display: inline-block;
   margin-right: 20px;
@@ -233,10 +259,25 @@ overflow: hidden;
   display: flex;
   justify-content: space-between;
 }
+
+
+
 .single-blog .next-prev ul li {
   width: calc(50% - 10px);
   padding: 20px 15px;
   border: 1px solid #ddd;
+}
+
+@media (max-width: 767.98px) {
+  .single-blog .next-prev ul {
+    flex-direction: column;
+  }
+
+  .single-blog .next-prev ul li {
+    width: 100%;
+    margin-bottom: 15px;
+    text-align: center;
+  }
 }
 .single-blog .next-prev ul li p {
   margin-bottom: 0;
@@ -269,4 +310,40 @@ overflow: hidden;
 -webkit-line-clamp: 3;
 -webkit-box-orient: vertical;  
 overflow: hidden;
+}
+
+.subscriber-form input {
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid #ddd;
+  padding: 0 15px;
+  margin-top: 10px;
+  height: 46px;
+  font-size: 16px;
+  color: #6b6b6b;
+}
+
+.subscriber-form small {
+  font-size: 12px;
+}
+
+.subscriber-form  p {
+  text-align: center;
+}
+
+.subscriber-form button {
+  display: block;
+  margin-top: 15px;
+  width: 100%;
+  border: 0;
+  padding: 6px 20px;
+  background-color: #00A896;
+  color: #ffffff;
+  transition: all 0.3s;
+  font-family: "Montserrat", sans-serif;
+}
+
+.subscriber-form button:hover {
+  background-color: #f74d6c;
 }

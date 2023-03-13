@@ -84,6 +84,7 @@ class SubscriberDataTable extends DataTable
         return [
             Column::make('SL')->orderable(false)->searchable(false),
             // Column::make('image'),
+            Column::make('name'),
             Column::make('email'),
             Column::make('created_at'),
             Column::computed('action')

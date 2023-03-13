@@ -94,6 +94,29 @@
                             </ul>
                         </div>
                     </div>
+
+                    <div class="sidebar-item">
+                        <div class="subscriber-form">
+                            <h4>Newsletter</h4>
+                            <p class="text-centr">Make sure to subscribe to our newsletter and be the first to know the news make sure to subscribe to our newsletter.</p>
+                            <form action="{{ route('subscriber.store') }}" method="POST">
+                                @csrf
+                                <input type="text" name="name" placeholder="Your name">
+                                @if ($errors->has('name'))
+                                <small class="text-danger">{{ $errors->first('name') }}</small>
+                                @endif
+                                <input type="email" name="email" placeholder="Email">
+                                @if ($errors->has('email'))
+                                <small class="text-danger">{{ $errors->first('email') }}</small>
+                                @endif
+                                <button type="submit">Subscribe</button>
+                                @if (Session::has('subscribed'))
+                                <span class="text-primary d-block pt-1 text-center">Thank you for subscribing.</span>
+                                @endif
+                            </form>
+                        </div>
+                    </div>
+
                     @foreach (blog_add() as $add)
                     <div class="sidebar-item">
                         <a href="{{$add->link}}" class="add">

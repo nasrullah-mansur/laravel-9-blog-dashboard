@@ -16,11 +16,13 @@ class SubscriberController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'name' => 'required',
             'email' => 'required'
         ]);
 
         $sub = new Subscriber();
         $sub->email = $request->email;
+        $sub->name = $request->name;
 
         $exist = Subscriber::where('email', $request->email)->first();
 
@@ -29,7 +31,7 @@ class SubscriberController extends Controller
         }
 
 
-        return redirect()->back()->with('success', 'Thank you');
+        return redirect()->back()->with('subscribed', 'Thank you');
     }
 
     public function delete(Request $request)
