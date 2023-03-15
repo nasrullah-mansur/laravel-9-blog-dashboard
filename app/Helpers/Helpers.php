@@ -1,10 +1,11 @@
 <?php
 
-use App\Models\Advertizement;
+use App\Models\Blog;
 use App\Models\MenuItem;
 use App\Models\Appearance;
-use App\Models\Blog;
 use Illuminate\Support\Str;
+use App\Models\Advertizement;
+use App\Models\ContactSection;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 
@@ -25,6 +26,7 @@ const TESTIMONIAL_PATH = 'uploaded_file/images/testimonial/';
 const CTA_PATH = 'uploaded_file/images/cta/';
 const ADD_PATH = 'uploaded_file/images/add/';
 const AWARD_PATH = 'uploaded_file/images/award/';
+const CHAMBER_PATH = 'uploaded_file/images/chamber/';
 const IMAGE_GALLERY_PATH = 'uploaded_file/images/gallery/';
 const REMOVE_MESSAGE = 'All relevant items will be removed permanently and You will not be able to recover this imaginary file!';
 
@@ -172,4 +174,11 @@ function single_blog_add()
         ->get();
 
     return $adds;
+}
+
+function contact_section()
+{
+    $contact = ContactSection::first();
+
+    return $contact;
 }

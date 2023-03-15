@@ -9,6 +9,7 @@ use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\BlogSidebar;
 use App\Models\BlogTag;
+use App\Models\Chamber;
 use App\Models\Contact;
 use App\Models\ImageGallery;
 use App\Models\Specialties;
@@ -26,6 +27,8 @@ class FrontController extends Controller
         $testimonials = Testimonial::where('status', STATUS_ACTIVE)->get();
         $trainings = Training::where('status', STATUS_ACTIVE)->get();
         $awards = Award::where('status', STATUS_ACTIVE)->get();
+
+        $chambers = Chamber::take(2)->get();
 
         $banner = Banner::first();
         $blogs = Blog::with('category')->orderBy('created_at', 'DESC')->take(6)->get();
@@ -45,7 +48,8 @@ class FrontController extends Controller
             'videos',
             'testimonials',
             'trainings',
-            'awards'
+            'awards',
+            'chambers'
         ));
     }
 
@@ -137,5 +141,11 @@ class FrontController extends Controller
     public function profile()
     {
         return view('front.profile.profile');
+    }
+
+    // Chambers;
+    public function chambers()
+    {
+        return view('front.chamber.index');
     }
 }

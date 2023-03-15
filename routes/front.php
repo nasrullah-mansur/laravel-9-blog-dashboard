@@ -17,6 +17,9 @@ Route::get('/blogs/tag/{slug}', [FrontController::class, 'blog_by_tag'])->name('
 Route::post('blog/by/search', [FrontController::class, 'blog_by_search_get'])->name('blog.by.search.get');
 Route::get('blog/by/search/{key}', [FrontController::class, 'blog_by_search_set'])->name('blog.by.search.set');
 
+// Chambers;
+Route::get('chambers', [FrontController::class, 'chambers'])->name('front.chamber');
+
 // Subscriber;
 Route::post('subscriber/store', [SubscriberController::class, 'store'])->name('subscriber.store');
 

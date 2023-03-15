@@ -1,16 +1,18 @@
 
   <!-- Header start -->
   <header class="home-header">
+      @if (contact_section())
     <div class="top">
         <ul>
             <li>
-                <a href="tel:+880 1751618072"><i class="fas fa-phone-alt"></i> +880 1751618072</a>
+                <a href="tel:{{contact_section()->phone}}"><i class="fas fa-phone-alt"></i> {{contact_section()->phone}}</a>
             </li>
             <li>
-                <a href="mailto:zahed.eee@gmail.com"><i class="far fa-envelope"></i> zahed.eee@gmail.com</a>
+                <a href="mailto:{{contact_section()->email}}"><i class="far fa-envelope"></i> {{contact_section()->email}}</a>
             </li>
         </ul>
     </div>
+    @endif
     <div class="main-menu">
         <div class="container-fluid">
             <div class="menu-content">

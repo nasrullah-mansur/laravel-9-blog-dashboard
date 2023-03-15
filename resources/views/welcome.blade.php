@@ -188,51 +188,52 @@
           <div class="col-lg-6">
               <div class="text">
                   <div class="section-title">
-                      <span>Contact Us</span>
-                      <h2>Dr. Gaousul Azam</h2>
+                      <span> Contact Us</span>
+                      <h2>{{ contact_section() ? contact_section()->section_title : '' }}</h2>
                   </div>
                   <div class="locations">
                       <ul>
-                          <li>
-                              <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
-                              <h5>Chamber 1</h5>
-                              <p>Bangladesh Centre for Rehabilitation (BCR) 234/C (2nd Floor), Kantaban Mor, New Elephant Road, Dhaka - 1205.</p>
-                              <p><strong>Chamber time:</strong> 3 PM to 8 PM (Saturday, Monday, Wednesday)</p>
-                              <a target="_blank" style="color: #f74d6c;" href="https://maps.app.goo.gl/87UA4g58Y1A6DQmw7"><i class="far fa-map"></i> Google Map Location</a>
-                          </li>
-                          <li>
-                              <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
-                              <h5>Chamber 2</h5>
-                              <p>Hi-Care Cardiac and Neuro Specialist Hospital (Room No-206) House No-23, Lake Drive Road, Sector No-7, Uttara Model Town, Dhaka - 1230</p>
-                              <p><strong>Chamber time:</strong> 3 PM to 7 PM (Sunday & Tuesday)</p>
-                              
-                          </li>
-                          
+                        @foreach ($chambers as $chamber)
+                        <li>
+                            <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
+                            <h5>{{ $chamber->chamber_name }}</h5>
+                            <p>{{ $chamber->address }}</p>
+                            <p><strong>Chamber time:</strong> {{$chamber->time}} (
+                                @foreach ($chamber->days as $cd)
+                                    {{$cd->day}}
+                                    @if (!$loop->last)
+                                        ,
+                                    @endif
+                                @endforeach
+                            )</p>
+                            @if ($chamber->google_location)
+                            <a target="_blank" style="color: #f74d6c;" href="{{$chamber->google_location}}"><i class="far fa-map"></i> Google Map Location</a>
+                            @endif
+                        </li>
+                        @endforeach
                       </ul>
                   </div>
                   <h4>Contact Us for an Appointment</h4>
                   <ul class="direct-contact">
+                    @foreach ($chambers as $chamber_n)
                       <li>
-                          <a href="tel:+8801320766504">
+                          <a href="tel:{{$chamber_n->serial_number}}">
                               <i class="fas fa-phone-alt"></i>
-                              <span>+88 01320766504</span>
+                              <span>{{$chamber_n->serial_number}}</span>
                           </a>
                       </li>
-                      <li>
-                          <a href="tel:+8801882580286">
-                              <i class="fas fa-phone-alt"></i>
-                              <span>+88 01882580286</span>
-                          </a>
-                      </li>
-                      
+                      @endforeach
+                                            
                   </ul>
               </div>
           </div>
           <div class="col-lg-6">
               <div class="form">
                   <div class="section-title">
-                      <h2>Send Us a Message</h2>
-                      <p>Looking for help with your neck or back pain or injury? Send us a message below or give us a call at +88 01320766504.</p>
+                      <h2>{{contact_section() ? contact_section()->form_title : 'Send Us a Message' }}</h2>
+                      @if (contact_section())
+                      <p>{{ contact_section()->form_description }}</p>
+                      @endif
                       @if (Session::has('success'))
                         <p style="color: #f74d6c;" class="pb-2 mb-0">{{ Session::get('success') }}</p>
                     @endif

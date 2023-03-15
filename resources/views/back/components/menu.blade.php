@@ -75,6 +75,30 @@
             </li>
           </ul>
         </li>
+
+        <li class=" nav-item {{ Route::is('contact.section.*') ? 'active' : ''}}">
+          <a href="#"><i class="ft-box"></i><span class="menu-title">Contact</span></a>
+          <ul class="menu-content">
+            <li class="{{ Route::is('contact.section.*') ? 'active' : '' }}">
+                <a class="menu-item" href="{{route('contact.section')}}">Section</a>
+            </li>
+            <li class="{{ Route::is('chamber.*') ? 'active' : '' }}">
+                <a class="menu-item" href="{{route('chamber.index')}}">Chambers</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class=" nav-item {{ Route::is('dr.time.*', 'dr.day.*') ? 'active' : ''}}">
+          <a href="#"><i class="ft-box"></i><span class="menu-title">Appintments</span></a>
+          <ul class="menu-content">
+            <li class="{{ Route::is('dr.day.*') ? 'active' : '' }}">
+                <a class="menu-item" href="{{route('dr.day.index')}}">Days</a>
+            </li>
+            <li class="{{ Route::is('dr.time.*') ? 'active' : '' }}">
+                <a class="menu-item" href="{{route('dr.time.index')}}">Times</a>
+            </li>
+          </ul>
+        </li>
         
         <li class=" nav-item {{ Route::is('user.contact', 'user.contact.show') ? 'active' : ''}}">
             <a href="{{route('user.contact')}}"><i class="ft-box"></i><span class="menu-title">Contact</span></a>

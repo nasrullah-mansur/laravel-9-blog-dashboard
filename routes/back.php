@@ -1,29 +1,26 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdvertizementController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Back\BlogController;
 use App\Http\Controllers\Back\MenuController;
-use App\Http\Controllers\Back\UserController;
 use App\Http\Controllers\Back\BlogTagController;
 use App\Http\Controllers\Back\AppearanceController;
 use App\Http\Controllers\Back\AwardController;
 use App\Http\Controllers\Back\BannerController;
 use App\Http\Controllers\Back\BlogCategoryController;
-use App\Http\Controllers\Back\DashboardController;
 use App\Http\Controllers\Back\ImageGalleryController;
 use App\Http\Controllers\Back\TestimonialController;
 use App\Http\Controllers\Back\TrainingController;
 use App\Http\Controllers\Back\VideoGalleryController;
 use App\Http\Controllers\BlogSidebarController;
+use App\Http\Controllers\ChamberController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContactSectionController;
+use App\Http\Controllers\DayController;
 use App\Http\Controllers\SpecialtiesController;
 use App\Http\Controllers\SubscriberController;
-
-
-
+use App\Http\Controllers\TimeController;
 
 Route::middleware(['auth'])->group(function () {
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -36,25 +33,6 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['middleware' => ['admin']], function () {
 
         Route::prefix('admin')->group(function () {
-
-            // Admin Dashboard;
-            Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-
-            // User;
-            Route::get('users', [UserController::class, 'index'])->name('admin.user');
-            Route::get('users/create', [UserController::class, 'create'])->name('admin.user.create');
-            Route::post('users/store', [UserController::class, 'store'])->name('admin.user.store');
-            Route::get('users/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
-            Route::post('users/update/{id}', [UserController::class, 'update'])->name('admin.user.update');
-            Route::post('user/delete', [UserController::class, 'delete'])->name('admin.user.delete');
-
-            // Admin;
-            Route::get('admins', [AdminController::class, 'index'])->name('admin.admin');
-            Route::get('admin/create', [AdminController::class, 'create'])->name('admin.admin.create');
-            Route::post('admin/store', [AdminController::class, 'store'])->name('admin.admin.store');
-            Route::get('admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.admin.edit');
-            Route::post('admin/update/{id}', [AdminController::class, 'update'])->name('admin.admin.update');
-            Route::post('admin/delete', [AdminController::class, 'delete'])->name('admin.admin.delete');
 
             // Blog Categories;
             Route::get('blog/categories', [BlogCategoryController::class, 'index'])->name('blog.category.index');
@@ -188,11 +166,37 @@ Route::middleware(['auth'])->group(function () {
             Route::post('advertizement/image/update/{id}', [AdvertizementController::class, 'update'])->name('advertizement.update');
             Route::post('advertizement/image/delete', [AdvertizementController::class, 'delete'])->name('advertizement.delete');
 
-            // Contact;
+            // Contact Section;
+            Route::get('contact/section', [ContactSectionController::class, 'edit'])->name('contact.section');
+            Route::post('contact/section', [ContactSectionController::class, 'update'])->name('contact.section.update');
+
+
+            // ***************** Contact From Contact Form *******************;
+
             Route::get('contact', [ContactController::class, 'index'])->name('user.contact');
             Route::get('contact/{id}', [ContactController::class, 'show'])->name('user.contact.show');
             Route::post('contact/delete', [ContactController::class, 'delete'])->name('user.contact.delete');
             Route::post('contact/reply', [ContactController::class, 'reply'])->name('user.contact.reply');
+
+
+            // **************** Appointment ********************************;
+            Route::get('times', [TimeController::class, 'index'])->name('dr.time.index');
+            Route::post('times/store', [TimeController::class, 'store'])->name('dr.time.store');
+            Route::post('times/update', [TimeController::class, 'update'])->name('dr.time.update');
+            Route::post('times/delete', [TimeController::class, 'delete'])->name('dr.time.delete');
+
+            Route::get('days', [DayController::class, 'index'])->name('dr.day.index');
+            Route::post('days/store', [DayController::class, 'store'])->name('dr.day.store');
+            Route::post('days/update', [DayController::class, 'update'])->name('dr.day.update');
+            Route::post('days/delete', [DayController::class, 'delete'])->name('dr.day.delete');
+
+            // **************** Chamber ********************************;
+            Route::get('chamber', [ChamberController::class, 'index'])->name('chamber.index');
+            Route::get('chamber/create', [ChamberController::class, 'create'])->name('chamber.create');
+            Route::post('chamber/store', [ChamberController::class, 'store'])->name('chamber.store');
+            Route::get('chamber/edit/{id}', [ChamberController::class, 'edit'])->name('chamber.edit');
+            Route::post('chamber/update/{id}', [ChamberController::class, 'update'])->name('chamber.update');
+            Route::post('chamber/delete', [ChamberController::class, 'delete'])->name('chamber.delete');
         });
     });
 });
