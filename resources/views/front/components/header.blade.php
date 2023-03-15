@@ -41,7 +41,7 @@
                 <div class="account">
                     <ul>
                         <li>
-                            <a class="login" href="#"><span>Login</span></a>
+                            <a class="login" href="{{route('login')}}"><span>Login</span></a>
                         </li>
                         <li>
                             <a class="appointment" href="#">

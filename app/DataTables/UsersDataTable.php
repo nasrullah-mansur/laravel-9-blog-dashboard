@@ -30,7 +30,7 @@ class UsersDataTable extends DataTable
             })
 
             ->editColumn('updated_at', function ($data) {
-                return $data->created_at->diffForHumans(); // human readable format
+                return $data->updated_at->diffForHumans(); // human readable format
             })
 
             // ->editColumn('image', function ($data) {
@@ -41,6 +41,7 @@ class UsersDataTable extends DataTable
                 // <a class="btn btn-icon btn-success" style="margin-right: 5px;" href="#"><i class="ft-edit"></i></a>
                 return
                     '<div class="d-flex action-btn">
+                    <a class="btn btn-icon btn-success" style="margin-right: 5px;" href="' . route('admin.user.edit', $data->id) . '"><i class="ft-edit"></i></a>
                         <a data-id="' . $data->id . '" class="btn btn-icon btn-danger delete-data" style="margin-right: 5px;" href="#"><i class="ft-trash-2"></i></a> 
                     </div>';
             })

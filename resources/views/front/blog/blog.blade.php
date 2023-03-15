@@ -19,8 +19,15 @@
         <div class="row">
             <div class="col-lg-9">
                 <div class="blog-content">
+                    <div class="form-search">
+                        <form action="{{route('blog.by.search.get')}}" method="POST" class="search-content">
+                            @csrf
+                            <input name="key" type="search" placeholder="Search here...">
+                            <button type="submit"><i class="fas fa-search"></i></button>
+                        </form>
+                    </div>
                     <div class="row">
-                        @foreach ($blogs as $blog)
+                        @forelse ($blogs as $blog)
                         <div class="col-lg-4">
                             <div class="blog-item">
                                 <div class="img">
@@ -51,7 +58,9 @@
                                 </div>
                             </div>
                         </div>
-                        @endforeach
+                        @empty
+                        <p class="no-blog"><i class="far fa-frown-open"></i> No blog found <i class="far fa-frown-open"></i></p>
+                        @endforelse
                     </div>
                 </div>
                 <div class="paginate-area">

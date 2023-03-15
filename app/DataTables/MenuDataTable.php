@@ -38,7 +38,7 @@ class MenuDataTable extends DataTable
             })
 
             ->editColumn('updated_at', function ($data) {
-                return $data->created_at->diffForHumans(); // human readable format
+                return $data->updated_at->diffForHumans(); // human readable format
             })
             ->editColumn('action', function ($data) {
                 return

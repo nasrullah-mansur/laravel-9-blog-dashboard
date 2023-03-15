@@ -17,9 +17,9 @@ class Authenticate
      */
     public function handle(Request $request, Closure $next)
     {
-        // if (!Auth::guard('admin')->check()) {
-        //     return redirect()->route('admin.login');
-        // }
+        if (!Auth::guard('web')->check() && !Auth::guard('admin')->check()) {
+            return redirect()->route('login');
+        }
         return $next($request);
     }
 }

@@ -1,4 +1,4 @@
-@extends('back.layout.layout', [$title = 'All active users', $add_btn = 'Add new user', $add_btn_link = route('admin.user.create')])
+@extends('back.layout.layout', [$title = 'All patients', $add_btn = 'Add new patient', $add_btn_link = route('admin.user.create')])
 
 @section('content')
 <section id="html5">
@@ -6,7 +6,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">All active users</h4>
+            <h4 class="card-title">All patients</h4>
             <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
             <div class="heading-elements">
               <ul class="list-inline mb-0">

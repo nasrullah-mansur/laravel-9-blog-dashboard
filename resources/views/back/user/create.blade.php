@@ -1,10 +1,10 @@
-@extends('back.layout.layout', [$title = 'Create new user'])
+@extends('back.layout.layout', [$title = 'Create new patient'])
 
 @section('content')
 <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title" id="basic-layout-square-controls">Add a new user</h4>
+        <h4 class="card-title" id="basic-layout-square-controls">Add a new patient</h4>
         <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
         <div class="heading-elements">
           <ul class="list-inline mb-0">

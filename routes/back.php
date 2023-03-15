@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdvertizementController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\Back\TestimonialController;
 use App\Http\Controllers\Back\TrainingController;
 use App\Http\Controllers\Back\VideoGalleryController;
 use App\Http\Controllers\BlogSidebarController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\SpecialtiesController;
 use App\Http\Controllers\SubscriberController;
 
@@ -42,9 +44,17 @@ Route::middleware(['auth'])->group(function () {
             Route::get('users', [UserController::class, 'index'])->name('admin.user');
             Route::get('users/create', [UserController::class, 'create'])->name('admin.user.create');
             Route::post('users/store', [UserController::class, 'store'])->name('admin.user.store');
-            Route::get('users/edit', [UserController::class, 'edit'])->name('admin.user.edit');
-            Route::post('users/update', [UserController::class, 'update'])->name('admin.user.update');
+            Route::get('users/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
+            Route::post('users/update/{id}', [UserController::class, 'update'])->name('admin.user.update');
             Route::post('user/delete', [UserController::class, 'delete'])->name('admin.user.delete');
+
+            // Admin;
+            Route::get('admins', [AdminController::class, 'index'])->name('admin.admin');
+            Route::get('admin/create', [AdminController::class, 'create'])->name('admin.admin.create');
+            Route::post('admin/store', [AdminController::class, 'store'])->name('admin.admin.store');
+            Route::get('admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.admin.edit');
+            Route::post('admin/update/{id}', [AdminController::class, 'update'])->name('admin.admin.update');
+            Route::post('admin/delete', [AdminController::class, 'delete'])->name('admin.admin.delete');
 
             // Blog Categories;
             Route::get('blog/categories', [BlogCategoryController::class, 'index'])->name('blog.category.index');
@@ -177,6 +187,12 @@ Route::middleware(['auth'])->group(function () {
             Route::get('advertizement/image/edit/{id}', [AdvertizementController::class, 'edit'])->name('advertizement.edit');
             Route::post('advertizement/image/update/{id}', [AdvertizementController::class, 'update'])->name('advertizement.update');
             Route::post('advertizement/image/delete', [AdvertizementController::class, 'delete'])->name('advertizement.delete');
+
+            // Contact;
+            Route::get('contact', [ContactController::class, 'index'])->name('user.contact');
+            Route::get('contact/{id}', [ContactController::class, 'show'])->name('user.contact.show');
+            Route::post('contact/delete', [ContactController::class, 'delete'])->name('user.contact.delete');
+            Route::post('contact/reply', [ContactController::class, 'reply'])->name('user.contact.reply');
         });
     });
 });

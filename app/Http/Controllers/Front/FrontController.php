@@ -9,11 +9,13 @@ use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\BlogSidebar;
 use App\Models\BlogTag;
+use App\Models\Contact;
 use App\Models\ImageGallery;
 use App\Models\Specialties;
 use App\Models\Testimonial;
 use App\Models\Training;
 use App\Models\VideoGallery;
+use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
@@ -60,7 +62,7 @@ class FrontController extends Controller
     public function blog_by_category($slug)
     {
         $blogCat = BlogCategory::where('slug', $slug)->firstOrFail();
-        $title = $blogCat->title;
+        $title = 'Category: ' . $blogCat->title;
 
         $blogs = Blog::where('status', STATUS_ACTIVE)
             ->where('blog_category_id', $blogCat->id)
@@ -75,11 +77,11 @@ class FrontController extends Controller
     public function blog_by_tag($slug)
     {
         $tag = BlogTag::where('slug', $slug)->firstOrFail();
-        $title = $tag->title;
+        $title = '#' . $tag->title;
 
         $blogs = $tag->blogs()
             ->where('status', STATUS_ACTIVE)
-            ->orderBy('created_at', 'desc')
+            ->orderBy('created_at', 'DESC')
             ->paginate(9);
 
         $sidebar = BlogSidebar::first();
@@ -106,6 +108,29 @@ class FrontController extends Controller
         $sidebar = BlogSidebar::first();
 
         return view('front.blog.single', compact('blog', 'previous_blog', 'next_blog', 'other_blogs', 'categories', 'sidebar'));
+    }
+
+    public function blog_by_search_get(Request $request)
+    {
+        if ($request->key) {
+            return redirect()->route('blog.by.search.set', $request->key);
+        } else {
+            return redirect()->route('front.blog');
+        }
+    }
+
+    public function blog_by_search_set($key)
+    {
+        $title = 'Result of: ' . $key;
+        $blogs = Blog::where('status', STATUS_ACTIVE)
+            ->where('title', 'LIKE', '%' . $key . '%')
+            ->orWhere('content', 'LIKE', '%' . $key . '%')
+            ->orderBy('created_at', 'DESC')
+            ->paginate(9);
+        $sidebar = BlogSidebar::first();
+        $categories = BlogCategory::with('blogs')->get();
+        $tags = BlogTag::all();
+        return view('front.blog.blog', compact('blogs', 'title', 'sidebar', 'categories', 'tags'));
     }
 
     // User profile;

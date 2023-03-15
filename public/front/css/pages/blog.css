@@ -347,3 +347,51 @@ overflow: hidden;
 .subscriber-form button:hover {
   background-color: #f74d6c;
 }
+
+/* ======================= */
+
+.search-content {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.search-content input {
+  width: calc(100% - 80px);
+  height: 45px;
+  border: 1px solid #d2d2d2;
+  padding: 0 15px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.search-content input:focus {
+  border-color: #00A896;
+}
+
+
+.search-content button {
+  width: 80px;
+  height: 45px;
+  border: 0;
+  background-color: #00A896;
+  color: #fff;
+  font-size: 22px;
+}
+
+.search-content button:hover {
+  background-color: #f74d6c;
+}
+
+
+.no-blog {
+  font-size: 20px;
+  text-align: center;
+  color: #00A896;
+  font-family: "Montserrat", sans-serif;
+}
+
+.no-blog i {
+  color: #f74d6c;
+}
+
+/* ============== Auth ================ */

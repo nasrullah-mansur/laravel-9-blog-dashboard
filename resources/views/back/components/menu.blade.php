@@ -63,10 +63,23 @@
             </li>
           </ul>
         </li>
-        
-        <li class=" nav-item {{ Route::is('admin.user.*') ? 'active' : ''}}">
-            <a href="{{route('admin.user')}}"><i class="ft-box"></i><span class="menu-title">Users</span></a>
+
+        <li class=" nav-item {{ Route::is('admin.user.*', 'admin.user', 'admin.admin.*', 'admin.admin') ? 'active' : ''}}">
+          <a href="#"><i class="ft-box"></i><span class="menu-title">Users</span></a>
+          <ul class="menu-content">
+            <li class="{{ Route::is('admin.user.*', 'admin.user') ? 'active' : '' }}">
+                <a class="menu-item" href="{{route('admin.user')}}">Patients</a>
+            </li>
+            <li class="{{ Route::is('admin.admin.*', 'admin.admin') ? 'active' : '' }}">
+                <a class="menu-item" href="{{route('admin.admin')}}">Admins</a>
+            </li>
+          </ul>
         </li>
+        
+        <li class=" nav-item {{ Route::is('user.contact', 'user.contact.show') ? 'active' : ''}}">
+            <a href="{{route('user.contact')}}"><i class="ft-box"></i><span class="menu-title">Contact</span></a>
+        </li>
+
 
         <li class=" nav-item {{ Route::is('appearance.edit') ? 'active' : ''}}">
             <a href="{{route('appearance.edit')}}"><i class="ft-box"></i><span class="menu-title">Appearance</span></a>

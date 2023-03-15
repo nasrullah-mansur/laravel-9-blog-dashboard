@@ -1,10 +1,10 @@
-@extends('back.layout.layout', [$title = 'Update profile'])
+@extends('back.layout.layout', [$title = 'Update patient'])
 
 @section('content')
 <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title" id="basic-layout-square-controls">Update profile</h4>
+        <h4 class="card-title" id="basic-layout-square-controls">Update patient</h4>
         <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
         <div class="heading-elements">
           <ul class="list-inline mb-0">
@@ -17,7 +17,7 @@
       </div>
       <div class="card-content collapse show">
         <div class="card-body">
-          <form class="form" action="{{ route('admin.user.update') }}" method="POST">
+          <form class="form" action="{{ route('admin.user.update', $user->id) }}" method="POST">
             @csrf
             <div class="form-body">
               <div class="form-group">

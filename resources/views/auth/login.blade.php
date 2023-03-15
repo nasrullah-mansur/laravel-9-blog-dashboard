@@ -29,7 +29,12 @@
                     <label class="form-check-label" for="remember">Check me logged in</label>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Log In</button>
+                <button type="submit" class="btn btn-primary">Log In</button> 
+                <hr>
+                <div class="footer-notice text-center">
+                    <p class="m-0">Forgot password? <a href="{{route('password.request')}}">Reset now</a></p>
+                    <p class="m-0">Don't have account? <a href="{{route('register')}}">Register now</a></p>
+                </div>
             </form>
         </div>
     </div>
