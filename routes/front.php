@@ -25,5 +25,5 @@ Route::post('user/contact/store', [ContactController::class, 'contact_store'])->
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('profile', [FrontController::class, 'profile']);
+    Route::get('profile', [FrontController::class, 'profile'])->name('user.profile');
 });

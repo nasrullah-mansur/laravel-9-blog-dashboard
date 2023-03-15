@@ -9,8 +9,8 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{{ asset('front/css/all.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('front/css/slick.css') }}" />
     <link rel="stylesheet" href="{{ asset('front/css/bootstrap.min.css') }}" />
+    @stack('page_plugin_css')
     <link rel="stylesheet" href="{{ asset('front/css/style.css') }}" />
     @stack('page_css')
     <link rel="stylesheet" href="{{ asset('front/css/custom.css') }}" />

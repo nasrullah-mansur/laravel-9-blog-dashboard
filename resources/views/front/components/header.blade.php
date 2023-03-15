@@ -41,7 +41,13 @@
                 <div class="account">
                     <ul>
                         <li>
+                            @if (Auth::guard('web')->check())
+                            <a class="login" href="{{route('user.profile')}}"><span>Profile</span></a>
+                            @elseif(Auth::guard('admin')->check())
+                            <a class="login" href="{{route('dashboard')}}"><span>Dashboard</span></a>
+                            @else
                             <a class="login" href="{{route('login')}}"><span>Login</span></a>
+                            @endif
                         </li>
                         <li>
                             <a class="appointment" href="#">
