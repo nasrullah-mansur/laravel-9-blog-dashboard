@@ -176,6 +176,17 @@ function single_blog_add()
     return $adds;
 }
 
+function chamber_add()
+{
+    $adds = Advertizement::where('position', 'chamber-page')
+        ->where('status', STATUS_ACTIVE)
+        ->inRandomOrder()
+        ->take(1)
+        ->get();
+
+    return $adds;
+}
+
 function contact_section()
 {
     $contact = ContactSection::first();

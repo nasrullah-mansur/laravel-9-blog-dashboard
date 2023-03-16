@@ -395,3 +395,35 @@ overflow: hidden;
 }
 
 /* ============== Auth ================ */
+
+.blog-content p {
+  padding-bottom: 5px;
+  position: relative;
+  padding-left: 95px;
+}
+
+.blog-content p strong {
+  display: inline-block;
+  width: 80px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.blog-content p strong::after {
+  content: ':';
+  position: absolute;
+  top: 0;
+  left: 100%;
+}
+
+.blog-item-title h3 {
+  font-size: 22px;
+  padding-bottom: 15px;
+  padding-top: 10px;
+}
+
+.blog-content p a {
+  color: #f74d6c;
+}
+

@@ -11,9 +11,11 @@ use App\Models\BlogSidebar;
 use App\Models\BlogTag;
 use App\Models\Chamber;
 use App\Models\Contact;
+use App\Models\Day;
 use App\Models\ImageGallery;
 use App\Models\Specialties;
 use App\Models\Testimonial;
+use App\Models\Time;
 use App\Models\Training;
 use App\Models\VideoGallery;
 use Illuminate\Http\Request;
@@ -146,6 +148,61 @@ class FrontController extends Controller
     // Chambers;
     public function chambers()
     {
-        return view('front.chamber.index');
+        $title = 'Our Chambers';
+        $chambers = Chamber::all();
+        $days = Day::all();
+        $times = Time::all();
+        $sidebar = BlogSidebar::first();
+        return view('front.chamber.index', compact('title', 'chambers', 'days', 'times', 'sidebar'));
+    }
+
+    public function chambers_by_search_set(Request $request)
+    {
+        $day = $request->day == null ? 'all' : $request->day;
+        $time = $request->time == null ? 'all' : $request->time;
+
+        return redirect()->route('front.chamber.get', [$day, $time]);
+    }
+
+    public function chambers_by_search_get($day, $time)
+    {
+
+        $my_time = Time::where('slug', $time)->first();
+        $my_day = Day::where('slug', $day)->first();
+
+        if ($day == 'all') {
+            if ($time == 'all') {
+                $chambers = Chamber::all();
+                $title = 'Our Chambers';
+            } else {
+                $chambers = $my_time->chambers()->get();
+                $title = $my_time->time;
+            }
+        } else {
+            if ($time == 'all') {
+                $chambers = $my_day->chambers()->get();
+                $title = $my_day->day;
+            } else {
+
+                $chambers = Chamber::whereHas('days', function ($query) use ($day) {
+                    $query->where('slug', $day);
+                })
+                    ->whereHas('times', function ($query) use ($time) {
+                        $query->where('slug', $time);
+                    })
+                    ->get();
+
+                $title = $my_day->day . ' - ' . $my_time->time;
+            }
+        }
+
+
+        // $title = 'Our Chambers';
+        $days = Day::all();
+        $times = Time::all();
+        $sidebar = BlogSidebar::first();
+
+
+        return view('front.chamber.index', compact('title', 'chambers', 'days', 'times', 'sidebar'));
     }
 }

@@ -76,10 +76,10 @@
           </ul>
         </li>
 
-        <li class=" nav-item {{ Route::is('contact.section.*') ? 'active' : ''}}">
+        <li class=" nav-item {{ Route::is('contact.section.*', 'contact.section', 'chamber.*') ? 'active' : ''}}">
           <a href="#"><i class="ft-box"></i><span class="menu-title">Contact</span></a>
           <ul class="menu-content">
-            <li class="{{ Route::is('contact.section.*') ? 'active' : '' }}">
+            <li class="{{ Route::is('contact.section.*', 'contact.section') ? 'active' : '' }}">
                 <a class="menu-item" href="{{route('contact.section')}}">Section</a>
             </li>
             <li class="{{ Route::is('chamber.*') ? 'active' : '' }}">
@@ -89,7 +89,7 @@
         </li>
 
         <li class=" nav-item {{ Route::is('dr.time.*', 'dr.day.*') ? 'active' : ''}}">
-          <a href="#"><i class="ft-box"></i><span class="menu-title">Appintments</span></a>
+          <a href="#"><i class="ft-box"></i><span class="menu-title">Appointments</span></a>
           <ul class="menu-content">
             <li class="{{ Route::is('dr.day.*') ? 'active' : '' }}">
                 <a class="menu-item" href="{{route('dr.day.index')}}">Days</a>

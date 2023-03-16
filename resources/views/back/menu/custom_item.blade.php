@@ -44,30 +44,11 @@
 
 @push('menu_js')
     <script>
-        // Add item from custom form;
-        function customMenuAdd() {
+         function customMenuAdd() {
             let getLiSelect = $(".dd-custom li")[0];
             $(".add-custom-item").on("click", function () {
-                let setData = {
-                    liMenuId: getLiSelect.getAttribute("data-menu-id"),
-                    liLabel: getLiSelect.getAttribute("data-label")
-                        ? getLiSelect.getAttribute("data-label")
-                        : "custom link",
-                    liUrl: getLiSelect.getAttribute("data-slug")
-                        ? getLiSelect.getAttribute("data-slug")
-                        : "#",
-                    liClass: getLiSelect.getAttribute("data-class")
-                        ? getLiSelect.getAttribute("data-class")
-                        : null,
-                    liPosition: getLiSelect.getAttribute("data-position")
-                        ? getLiSelect.getAttribute("data-position")
-                        : null,
-                    liTarget: getLiSelect.getAttribute("data-target")
-                        ? getLiSelect.getAttribute("data-target")
-                        : null,
-                };
-
-                let ddList = $(".dd-list");
+                
+                let setData = addCustomMenuItem(getLiSelect);
 
                 $.ajax({
                     type: "POST",
@@ -75,28 +56,17 @@
                     data: setData,
                     success: function (data) {
                         toastr.success("Menu item successfully added!", "WELL DONE");
-                        ddList.append(
-                            setLiData(
-                                data.id,
-                                setData.liClass,
-                                setData.liIcon,
-                                setData.liLabel,
-                                0,
-                                '999',
-                                setData.liTarget,
-                                setData.liUrl
-                            )
-                        );
+                        $('#list-area').load(' #list-area', function() {
+                            autoPosition();
+                        });
                     },
                     error: function (error) {
                         console.log(error);
                     },
                 });
-
-                autoPosition();
-                getListItemData();
             });
         }
         customMenuAdd();
+        
     </script>
 @endpush

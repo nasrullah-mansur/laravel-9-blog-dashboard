@@ -19,6 +19,8 @@ Route::get('blog/by/search/{key}', [FrontController::class, 'blog_by_search_set'
 
 // Chambers;
 Route::get('chambers', [FrontController::class, 'chambers'])->name('front.chamber');
+Route::post('chambers/find', [FrontController::class, 'chambers_by_search_set'])->name('front.chamber.set');
+Route::get('chambers/find/{day}/{time}', [FrontController::class, 'chambers_by_search_get'])->name('front.chamber.get');
 
 // Subscriber;
 Route::post('subscriber/store', [SubscriberController::class, 'store'])->name('subscriber.store');

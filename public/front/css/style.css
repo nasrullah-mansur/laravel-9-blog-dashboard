@@ -457,4 +457,37 @@ ul {
 .home-footer .copyright p {
   color: #ffffff;
   margin-bottom: 0;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/* Nice Select */
+.nice-select {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.nice-select .current {
+  display: block;
+  margin-top: -6px;
+}
+
+.nice-select .list {
+  display: block;
+  width: 100%;
+}
+
+.blog-page .right-sidebar .custom-btn {
+  display: block;
+  padding: 6px 20px;
+  background-color: #00A896;
+  color: #ffffff;
+  transition: all 0.3s;
+  font-family: "Montserrat", sans-serif;
+  border: 0;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.blog-page .right-sidebar .custom-btn:hover {
+  background-color: #f74d6c;
+}

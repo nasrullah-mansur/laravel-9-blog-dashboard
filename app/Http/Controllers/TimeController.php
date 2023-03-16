@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Time;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class TimeController extends Controller
@@ -21,6 +22,7 @@ class TimeController extends Controller
 
         $time = new Time();
         $time->time = $request->time;
+        $time->slug = Str::slug($request->time);
         $time->save();
 
         return redirect()->route('dr.time.index')->with('success', 'Time added successfully');
@@ -34,6 +36,7 @@ class TimeController extends Controller
 
         $time = Time::where('id', $request->id)->firstOrFail();
         $time->time = $request->time;
+        $time->slug = Str::slug($request->time);
         $time->save();
 
         return redirect()->route('dr.time.index')->with('success', 'Time updated successfully');

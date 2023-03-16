@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Day;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class DayController extends Controller
@@ -21,6 +22,7 @@ class DayController extends Controller
 
         $day = new Day();
         $day->day = $request->day;
+        $day->slug = Str::slug($request->day);
         $day->save();
 
         return redirect()->route('dr.day.index')->with('success', 'Day added successfully');
@@ -34,6 +36,7 @@ class DayController extends Controller
 
         $day = Day::where('id', $request->id)->firstOrFail();
         $day->day = $request->day;
+        $day->slug = Str::slug($request->day);
         $day->save();
 
         return redirect()->route('dr.day.index')->with('success', 'Day updated successfully');

@@ -21,3 +21,7 @@
 .select2 {
     width: 100% !important;
 }
+
+.dd-list .dd-list {
+    padding-left: 0 !important;
+}

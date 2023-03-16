@@ -58,6 +58,8 @@
                 <select class="form-control" name="position">
                     <option {{$add->position == 'blog-page' ? 'selected' : ''}} value="blog-page">Blog Page</option>
                     <option {{$add->position == 'single-blog-page' ? 'selected' : ''}} value="single-blog-page">Single Blog Page</option>
+                    <option {{$add->position == 'chamber-page' ? 'selected' : ''}} value="chamber-page">Chambers Page</option>
+                  
                 </select>
                 @if ($errors->has('position'))
                     <small class="text-danger">{{ $errors->first('position') }}</small>

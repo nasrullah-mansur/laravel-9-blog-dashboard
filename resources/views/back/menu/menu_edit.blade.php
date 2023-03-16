@@ -82,7 +82,7 @@
                             </div>
 
                             <div class="border-top mt-3 pt-3">
-                                <button type="button" class="add-menu-items btn btn-primary">Save Menu</button>
+                                <button type="button" class="set-menu-location btn btn-primary">Save Menu</button>
                             </div>
                         </div>
                     </div>
@@ -96,49 +96,15 @@
 @push('menu_js')
 <script>
 
-    $('.add-menu-items').on('click', function(e) {
+    $('.set-menu-location').on('click', function(e) {
         e.preventDefault();
-        let allLiData = [];
-        let allLiDataElements = $('#dd-list .dd-item');
-        let locationVal = $('.set_location').filter(":checked").val();
-
-        Array.from(allLiDataElements).forEach(element => {
-            let id = element.dataset.id;
-            let label = element.dataset.label;
-            let className = element.dataset.class;
-            let target = element.dataset.target;
-            let slug = element.dataset.slug;
-            let pid = element.dataset.pid;
-            let position = element.dataset.position;
-            let set_location = locationVal == undefined ? null : locationVal;
-
-            let liData = {
-                id: id,
-                menu_id: "{{ $menu_id }}",
-                p_id: pid,
-                label: label,
-                slug: slug,
-                class: className,
-                position: position,
-                target: target,
-                set_location: set_location
-            }
-
-            allLiData.push(liData);
-            // console.log(element);
-        });
-
-
-        // console.log(allLiData);
+       let allLiData = setMenuLocation("{{ $menu_id }}");
         $.ajax({
             type: "POST",
             url: "{{ route('menuItem.update') }}",
             data: {data: allLiData},
             success: function (data) {
-                toastr.success("Menu items successfully updated!", "WELL DONE");
-                setTimeout(() => {
-                    location.reload();
-                }, 3000);
+                toastr.success("Menu successfully updated!", "WELL DONE");
             },
             error: function (error) {
                 if (error.statusText) {
