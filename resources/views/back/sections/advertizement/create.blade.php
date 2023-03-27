@@ -58,7 +58,6 @@
                 <select class="form-control" name="position">
                     <option value="blog-page">Blog Page</option>
                     <option value="single-blog-page">Single Blog Page</option>
-                    <option value="chamber-page">Chambers Page</option>
                 </select>
                 @if ($errors->has('position'))
                     <small class="text-danger">{{ $errors->first('position') }}</small>
@@ -80,7 +79,7 @@
                 <button type="submit" class="btn btn-primary" style="margin-right: 5px; ">
                   <i class="fa fa-check-square-o"></i> Save
                 </button>
-              <button type="button" type="reset" class="btn btn-warning">
+              <button type="reset" class="btn btn-warning">
                 <i class="ft-x"></i> Reset
               </button>
             </div>

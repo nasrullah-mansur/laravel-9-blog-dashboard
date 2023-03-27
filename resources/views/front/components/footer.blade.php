@@ -6,7 +6,7 @@
               <div class="flow">
                   <h4 class="flow">
                       Flow <br />
-                      dr. md gaousul azam
+                      Mansoor Suhail
                   </h4>
                   <ul class="footer-social">
                       <li>
@@ -48,7 +48,7 @@
       </div>
   </div>
   <div class="copyright">
-      <p>Copyrighted &copy; 2022 by Dr. MD Gaousul Azam</p>
+      <p>Copyrighted &copy; 2023 by Mansoor Suhail</p>
   </div>
 </footer>
 <!-- Footer end -->

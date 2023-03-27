@@ -27,8 +27,3 @@ Route::post('subscriber/store', [SubscriberController::class, 'store'])->name('s
 
 // Contact;
 Route::post('user/contact/store', [ContactController::class, 'contact_store'])->name('user.contact.store');
-
-
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('profile', [FrontController::class, 'profile'])->name('user.profile');
-});

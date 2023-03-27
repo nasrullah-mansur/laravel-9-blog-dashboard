@@ -23,7 +23,6 @@ class SpecialtiesController extends Controller
         $request->validate([
             'image' => 'required|mimes:png,jpg',
             'title' => 'required',
-            'link' => 'required',
             'status' => 'required'
         ]);
 
@@ -31,7 +30,6 @@ class SpecialtiesController extends Controller
 
         $special->title = $request->title;
         $special->status = $request->status;
-        $special->link = $request->link;
         $special->image = ImageUpload($request->image, SPECIALTIES_PATH);
         $special->save();
 
@@ -52,13 +50,11 @@ class SpecialtiesController extends Controller
         $request->validate([
             'image' => 'nullable|mimes:png,jpg',
             'title' => 'required',
-            'link' => 'required',
             'status' => 'required'
         ]);
 
         $special->title = $request->title;
         $special->status = $request->status;
-        $special->link = $request->link;
 
         if ($request->hasFile('image')) {
             $special->image = ImageUpload($request->image, SPECIALTIES_PATH, $special->image);

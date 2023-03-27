@@ -261,9 +261,14 @@ ul {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   color: #005151;
-  margin-left: 10px;
+  margin-left: 15px;
   text-transform: uppercase;
 }
+
+.home-header .main-menu .menu-content .list ul li a i {
+  font-size: 12px;
+}
+
 .home-header .main-menu .menu-content .list ul li a:hover {
   color: #f74d6c;
 }

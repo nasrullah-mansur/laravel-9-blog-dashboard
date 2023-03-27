@@ -6,21 +6,14 @@ use App\Http\Controllers\Back\BlogController;
 use App\Http\Controllers\Back\MenuController;
 use App\Http\Controllers\Back\BlogTagController;
 use App\Http\Controllers\Back\AppearanceController;
-use App\Http\Controllers\Back\AwardController;
 use App\Http\Controllers\Back\BannerController;
 use App\Http\Controllers\Back\BlogCategoryController;
-use App\Http\Controllers\Back\ImageGalleryController;
-use App\Http\Controllers\Back\TestimonialController;
-use App\Http\Controllers\Back\TrainingController;
 use App\Http\Controllers\Back\VideoGalleryController;
 use App\Http\Controllers\BlogSidebarController;
-use App\Http\Controllers\ChamberController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactSectionController;
-use App\Http\Controllers\DayController;
 use App\Http\Controllers\SpecialtiesController;
 use App\Http\Controllers\SubscriberController;
-use App\Http\Controllers\TimeController;
 
 Route::middleware(['auth'])->group(function () {
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -91,21 +84,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('gallery/video/update/{id}', [VideoGalleryController::class, 'update'])->name('video_gallery.update');
             Route::post('gallery/video/delete', [VideoGalleryController::class, 'delete'])->name('video_gallery.delete');
 
-            // Image Gallery Category;
-            Route::get('gallery/image/categories', [ImageGalleryController::class, 'index_category'])->name('image_gallery_category.index');
-            Route::get('gallery/image/category/create', [ImageGalleryController::class, 'create_category'])->name('image_gallery_category.create');
-            Route::post('gallery/image/category/store', [ImageGalleryController::class, 'store_category'])->name('image_gallery_category.store');
-            Route::get('gallery/image/category/edit/{id}', [ImageGalleryController::class, 'edit_category'])->name('image_gallery_category.edit');
-            Route::post('gallery/image/category/update/{id}', [ImageGalleryController::class, 'update_category'])->name('image_gallery_category.update');
-            Route::post('gallery/image/category/delete', [ImageGalleryController::class, 'delete_category'])->name('image_gallery_category.delete');
 
-            // Image Gallery;
-            Route::get('gallery/images', [ImageGalleryController::class, 'index'])->name('image_gallery.index');
-            Route::get('gallery/image/create', [ImageGalleryController::class, 'create'])->name('image_gallery.create');
-            Route::post('gallery/image/store', [ImageGalleryController::class, 'store'])->name('image_gallery.store');
-            Route::get('gallery/image/edit/{id}', [ImageGalleryController::class, 'edit'])->name('image_gallery.edit');
-            Route::post('gallery/image/update/{id}', [ImageGalleryController::class, 'update'])->name('image_gallery.update');
-            Route::post('gallery/image/delete', [ImageGalleryController::class, 'delete'])->name('image_gallery.delete');
 
             // Subscriber;
             Route::get('/subscribers', [SubscriberController::class, 'index'])->name('subscriber.index');
@@ -128,30 +107,6 @@ Route::middleware(['auth'])->group(function () {
             Route::post('specialties/image/update/{id}', [SpecialtiesController::class, 'update'])->name('specialties.update');
             Route::post('specialties/image/delete', [SpecialtiesController::class, 'delete'])->name('specialties.delete');
 
-
-            // Training;
-            Route::get('training/images', [TrainingController::class, 'index'])->name('training.index');
-            Route::get('training/image/create', [TrainingController::class, 'create'])->name('training.create');
-            Route::post('training/image/store', [TrainingController::class, 'store'])->name('training.store');
-            Route::get('training/image/edit/{id}', [TrainingController::class, 'edit'])->name('training.edit');
-            Route::post('training/image/update/{id}', [TrainingController::class, 'update'])->name('training.update');
-            Route::post('training/image/delete', [TrainingController::class, 'delete'])->name('training.delete');
-
-            // Award;
-            Route::get('award/images', [AwardController::class, 'index'])->name('award.index');
-            Route::get('award/image/create', [AwardController::class, 'create'])->name('award.create');
-            Route::post('award/image/store', [AwardController::class, 'store'])->name('award.store');
-            Route::get('award/image/edit/{id}', [AwardController::class, 'edit'])->name('award.edit');
-            Route::post('award/image/update/{id}', [AwardController::class, 'update'])->name('award.update');
-            Route::post('award/image/delete', [AwardController::class, 'delete'])->name('award.delete');
-
-            // Testimonial;
-            Route::get('testimonial/images', [TestimonialController::class, 'index'])->name('testimonial.index');
-            Route::get('testimonial/image/create', [TestimonialController::class, 'create'])->name('testimonial.create');
-            Route::post('testimonial/image/store', [TestimonialController::class, 'store'])->name('testimonial.store');
-            Route::get('testimonial/image/edit/{id}', [TestimonialController::class, 'edit'])->name('testimonial.edit');
-            Route::post('testimonial/image/update/{id}', [TestimonialController::class, 'update'])->name('testimonial.update');
-            Route::post('testimonial/image/delete', [TestimonialController::class, 'delete'])->name('testimonial.delete');
 
             // Blog sidebar;
             Route::get('blog/sidebar', [BlogSidebarController::class, 'index'])->name('blog.sidebar');
@@ -177,26 +132,6 @@ Route::middleware(['auth'])->group(function () {
             Route::get('contact/{id}', [ContactController::class, 'show'])->name('user.contact.show');
             Route::post('contact/delete', [ContactController::class, 'delete'])->name('user.contact.delete');
             Route::post('contact/reply', [ContactController::class, 'reply'])->name('user.contact.reply');
-
-
-            // **************** Appointment ********************************;
-            Route::get('times', [TimeController::class, 'index'])->name('dr.time.index');
-            Route::post('times/store', [TimeController::class, 'store'])->name('dr.time.store');
-            Route::post('times/update', [TimeController::class, 'update'])->name('dr.time.update');
-            Route::post('times/delete', [TimeController::class, 'delete'])->name('dr.time.delete');
-
-            Route::get('days', [DayController::class, 'index'])->name('dr.day.index');
-            Route::post('days/store', [DayController::class, 'store'])->name('dr.day.store');
-            Route::post('days/update', [DayController::class, 'update'])->name('dr.day.update');
-            Route::post('days/delete', [DayController::class, 'delete'])->name('dr.day.delete');
-
-            // **************** Chamber ********************************;
-            Route::get('chamber', [ChamberController::class, 'index'])->name('chamber.index');
-            Route::get('chamber/create', [ChamberController::class, 'create'])->name('chamber.create');
-            Route::post('chamber/store', [ChamberController::class, 'store'])->name('chamber.store');
-            Route::get('chamber/edit/{id}', [ChamberController::class, 'edit'])->name('chamber.edit');
-            Route::post('chamber/update/{id}', [ChamberController::class, 'update'])->name('chamber.update');
-            Route::post('chamber/delete', [ChamberController::class, 'delete'])->name('chamber.delete');
         });
     });
 });

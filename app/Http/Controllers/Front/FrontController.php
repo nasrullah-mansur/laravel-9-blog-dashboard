@@ -25,33 +25,22 @@ class FrontController extends Controller
     public function index()
     {
         $specials = Specialties::where('status', STATUS_ACTIVE)->get();
-        $videos = VideoGallery::orderBy('created_at', 'DESC')->take(4)->get();
-        $testimonials = Testimonial::where('status', STATUS_ACTIVE)->get();
-        $trainings = Training::where('status', STATUS_ACTIVE)->get();
-        $awards = Award::where('status', STATUS_ACTIVE)->get();
+        $videos = VideoGallery::orderBy('created_at', 'DESC')->take(6)->get();
 
-        $chambers = Chamber::take(2)->get();
 
         $banner = Banner::first();
         $blogs = Blog::with('category')->orderBy('created_at', 'DESC')->take(6)->get();
-        $image_galleries = ImageGallery::orderBy('created_at', 'DESC')
-            ->take(10)
-            ->get();
+
         $video_galleries = VideoGallery::orderBy('created_at', 'DESC')
             ->take(10)
             ->get();
 
         return view('welcome', compact(
             'blogs',
-            'image_galleries',
             'video_galleries',
             'banner',
             'specials',
             'videos',
-            'testimonials',
-            'trainings',
-            'awards',
-            'chambers'
         ));
     }
 
@@ -137,72 +126,5 @@ class FrontController extends Controller
         $categories = BlogCategory::with('blogs')->get();
         $tags = BlogTag::all();
         return view('front.blog.blog', compact('blogs', 'title', 'sidebar', 'categories', 'tags'));
-    }
-
-    // User profile;
-    public function profile()
-    {
-        return view('front.profile.profile');
-    }
-
-    // Chambers;
-    public function chambers()
-    {
-        $title = 'Our Chambers';
-        $chambers = Chamber::all();
-        $days = Day::all();
-        $times = Time::all();
-        $sidebar = BlogSidebar::first();
-        return view('front.chamber.index', compact('title', 'chambers', 'days', 'times', 'sidebar'));
-    }
-
-    public function chambers_by_search_set(Request $request)
-    {
-        $day = $request->day == null ? 'all' : $request->day;
-        $time = $request->time == null ? 'all' : $request->time;
-
-        return redirect()->route('front.chamber.get', [$day, $time]);
-    }
-
-    public function chambers_by_search_get($day, $time)
-    {
-
-        $my_time = Time::where('slug', $time)->first();
-        $my_day = Day::where('slug', $day)->first();
-
-        if ($day == 'all') {
-            if ($time == 'all') {
-                $chambers = Chamber::all();
-                $title = 'Our Chambers';
-            } else {
-                $chambers = $my_time->chambers()->get();
-                $title = $my_time->time;
-            }
-        } else {
-            if ($time == 'all') {
-                $chambers = $my_day->chambers()->get();
-                $title = $my_day->day;
-            } else {
-
-                $chambers = Chamber::whereHas('days', function ($query) use ($day) {
-                    $query->where('slug', $day);
-                })
-                    ->whereHas('times', function ($query) use ($time) {
-                        $query->where('slug', $time);
-                    })
-                    ->get();
-
-                $title = $my_day->day . ' - ' . $my_time->time;
-            }
-        }
-
-
-        // $title = 'Our Chambers';
-        $days = Day::all();
-        $times = Time::all();
-        $sidebar = BlogSidebar::first();
-
-
-        return view('front.chamber.index', compact('title', 'chambers', 'days', 'times', 'sidebar'));
     }
 }

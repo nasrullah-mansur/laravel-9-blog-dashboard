@@ -1,6 +1,6 @@
 
 .home-banner {
-  padding: 90px 0;
+  padding: 40px 0;
   background-color: #EEEDEE;
   position: relative;
 }
@@ -154,10 +154,10 @@
 .home-explore {
   padding: 60px 0;
 }
-.home-explore .explore-title {
+.explore-title {
   text-align: center;
 }
-.home-explore .explore-title h2 {
+.explore-title h2 {
   display: inline-block;
   margin-bottom: 30px;
   padding: 15px 25px;
@@ -167,15 +167,6 @@
   background-color: #005151;
   color: #fff;
 }
-.home-explore .img {
-  margin-bottom: 30px;
-}
-.home-explore .img img {
-  border: 10px solid #009585;
-  vertical-align: middle;
-  border-radius: 0 135px 0 135px;
-}
-
 .home-story {
   padding: 60px;
   background-color: #EEEDEE;
@@ -422,4 +413,69 @@
   color: #ffffff;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
-}/*# sourceMappingURL=style.css.map */
+}
+
+
+.blog-item {
+  margin-bottom: 25px;
+  background-color: #F5F5F5;
+}
+.blog-item .blog-text {
+  padding: 15px 15px 25px;
+}
+.blog-item .blog-text .blog-item-title {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.blog-item .blog-text .blog-item-title .category,
+.blog-item .blog-text .blog-item-title .time {
+  margin-bottom: 10px;
+}
+.blog-item .blog-text .blog-item-title .category {
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #00A896;
+  font-family: "Montserrat", sans-serif;
+  transition: all 0.2s;
+}
+.blog-item .blog-text .blog-item-title .time {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+}
+.blog-item .blog-text .blog-content h3 {
+  font-size: 20px;
+  padding: 10px 0 5px;
+  line-height: 30px;
+}
+.blog-item .blog-text .blog-content h3 a {
+  color: #333333;
+  transition: all 0.3s;
+  display: -webkit-box;
+-webkit-line-clamp: 3;
+-webkit-box-orient: vertical;  
+overflow: hidden;
+}
+.blog-item .blog-text .blog-content h3 a:hover {
+  color: #f74d6c;
+}
+.blog-item .blog-text .blog-content p {
+  color: #6b6b6b;
+  display: -webkit-box;
+-webkit-line-clamp: 5;
+-webkit-box-orient: vertical;  
+overflow: hidden;
+}
+.blog-item .blog-text .read-more a {
+  display: inline-block;
+  padding: 5px 20px;
+  background-color: #00A896;
+  color: #ffffff;
+  border-radius: 5px;
+  transition: all 0.3s;
+  font-family: "Montserrat", sans-serif;
+}
+.blog-item .blog-text .read-more a:hover {
+  background-color: #f74d6c;
+}

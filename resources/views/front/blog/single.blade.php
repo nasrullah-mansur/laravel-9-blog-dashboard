@@ -44,6 +44,13 @@
                           {{$blog->created_at->format('d M Y')}}
                       </span>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="single-blog">
+                    
                     <img class="w-100 img-fluid" src="{{ asset($blog->image) }}" alt="{{$blog->title}}">
                     <div class="description">
                         <p>{{$blog->content}}</p>

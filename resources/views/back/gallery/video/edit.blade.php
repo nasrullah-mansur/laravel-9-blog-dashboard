@@ -55,7 +55,7 @@
                 <button type="submit" class="btn btn-primary" style="margin-right: 5px; ">
                   <i class="fa fa-check-square-o"></i> Save
                 </button>
-              <button type="button" type="reset" class="btn btn-warning">
+              <button type="reset" class="btn btn-warning">
                 <i class="ft-x"></i> Reset
               </button>
             </div>

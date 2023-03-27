@@ -9,5 +9,8 @@
 <body>
     <h1>Hello {{ $request->name }}</h1>
     <p>{{ $request->message }}</p>
+    <hr>
+    <p>Thank You</p>
+    <h4>Mansoor Suhail</h4>
 </body>
 </html>

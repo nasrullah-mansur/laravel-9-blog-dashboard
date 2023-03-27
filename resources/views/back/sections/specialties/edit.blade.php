@@ -28,13 +28,6 @@
                 @endif
               </div>
 
-              <div class="form-group">
-                <label for="link">Link</label>
-                <input value="{{ $special->link }}" type="text" id="link" class="form-control square {{ $errors->has('link') ? 'is-invalid' : ''}} " placeholder="Link" name="link">
-                @if ($errors->has('link'))
-                    <small class="text-danger">{{ $errors->first('link') }}</small>
-                @endif
-              </div>
 
               <fieldset class="form-group">
                 <div class="image-preview" >
@@ -63,7 +56,7 @@
                 <button type="submit" class="btn btn-primary" style="margin-right: 5px; ">
                   <i class="fa fa-check-square-o"></i> Save
                 </button>
-              <button type="button" type="reset" class="btn btn-warning">
+              <button type="reset" class="btn btn-warning">
                 <i class="ft-x"></i> Reset
               </button>
             </div>

@@ -70,7 +70,7 @@
                         <li>
                             <fieldset>
                                 <input type="checkbox" id="category-{{$category->id}}" />
-                                <label data-menu-id="{{ $menu_id }}" data-label="{{ $category->title }}" data-slug="category-slug" for="category-{{$category->id}}">{{ $category->title }}</label>
+                                <label data-menu-id="{{ $menu_id }}" data-label="{{ $category->title }}" data-slug="{{ route('blog.by.category', $category->slug) }}" for="category-{{$category->id}}">{{ $category->title }}</label>
                             </fieldset>
                         </li>
                         @endforeach

@@ -27,7 +27,7 @@
                 <span class="user-name">{{ Auth::guard('admin')->user()->name }}</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="{{ route('admin.user.edit', Auth::guard('admin')->user()->id) }}"><i class="ft-user"></i> Edit Profile</a>
+                <a class="dropdown-item" href="{{ route('admin.admin.edit', Auth::guard('admin')->user()->id) }}"><i class="ft-user"></i> Edit Profile</a>
                 <a class="dropdown-item" onclick="logOutSession()" href="#"><i class="ft-power"></i> Logout</a>
                 <div class="d-none">
                   <form id="logout-form" action="{{ route('logout') }}" method="POST">@csrf</form>
