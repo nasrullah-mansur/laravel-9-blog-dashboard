@@ -93,16 +93,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="sidebar-item">
-                        <div class="tags">
-                            <h4>Tags</h4>
-                            <ul>
-                                @foreach ($tags as $tag)
-                                <li><a href="{{ route('blog.by.tag', $tag->slug) }}">#{{$tag->title}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
+                    
 
                     <div class="sidebar-item">
                         <div class="subscriber-form">

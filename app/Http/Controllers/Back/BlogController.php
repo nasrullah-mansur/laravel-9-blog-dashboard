@@ -20,8 +20,7 @@ class BlogController extends Controller
     public function create()
     {
         $categories = BlogCategory::all();
-        $tags = BlogTag::all();
-        return view('back.blog.create', compact('categories', 'tags'));
+        return view('back.blog.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -52,7 +51,29 @@ class BlogController extends Controller
 
         $blog->save();
 
-        $blog->tags()->attach($request->tags);
+        $tagList = [];
+
+        if ($request->tags) {
+            foreach ($request->tags as $t) {
+                if ($t != null) {
+                    $tag_exist = BlogTag::where('title', $t)->first();
+                    if ($tag_exist) {
+                        array_push($tagList, $tag_exist->id);
+                        continue;
+                    } else {
+                        $tag = new BlogTag();
+                        $tag->title = $t;
+                        $tag->slug = Str::slug($t);
+
+                        $tag->save();
+
+                        array_push($tagList, $tag->id);
+                    }
+                }
+            }
+        }
+
+        $blog->tags()->attach($tagList);
 
 
         return redirect()->route('blog.index')->with('success', 'Blog added successfully');
@@ -62,7 +83,7 @@ class BlogController extends Controller
     {
         $blog = Blog::where('id', $id)->firstOrFail();
         $categories = BlogCategory::all();
-        $tags = BlogTag::all();
+        $tags = $blog->tags;
 
         $active_tags = [];
 
@@ -104,7 +125,29 @@ class BlogController extends Controller
 
         $blog->save();
 
-        $blog->tags()->sync($request->tags);
+        $tagList = [];
+
+        if ($request->tags) {
+            foreach ($request->tags as $t) {
+                if ($t != null) {
+                    $tag_exist = BlogTag::where('title', $t)->first();
+                    if ($tag_exist) {
+                        array_push($tagList, $tag_exist->id);
+                        continue;
+                    } else {
+                        $tag = new BlogTag();
+                        $tag->title = $t;
+                        $tag->slug = Str::slug($t);
+
+                        $tag->save();
+
+                        array_push($tagList, $tag->id);
+                    }
+                }
+            }
+        }
+
+        $blog->tags()->sync($tagList);
 
 
         return redirect()->route('blog.index')->with('success', 'Blog updated successfully');

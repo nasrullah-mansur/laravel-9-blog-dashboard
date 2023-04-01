@@ -12,6 +12,7 @@ use App\Http\Controllers\Back\VideoGalleryController;
 use App\Http\Controllers\BlogSidebarController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactSectionController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\SpecialtiesController;
 use App\Http\Controllers\SubscriberController;
 
@@ -132,6 +133,15 @@ Route::middleware(['auth'])->group(function () {
             Route::get('contact/{id}', [ContactController::class, 'show'])->name('user.contact.show');
             Route::post('contact/delete', [ContactController::class, 'delete'])->name('user.contact.delete');
             Route::post('contact/reply', [ContactController::class, 'reply'])->name('user.contact.reply');
+
+
+            // Course;
+            Route::get('course', [CourseController::class, 'index'])->name('course.index');
+            Route::get('course/create', [CourseController::class, 'create'])->name('course.create');
+            Route::post('course/store', [CourseController::class, 'store'])->name('course.store');
+            Route::get('course/edit/{id}', [CourseController::class, 'edit'])->name('course.edit');
+            Route::post('course/update/{id}', [CourseController::class, 'update'])->name('course.update');
+            Route::post('course/delete', [CourseController::class, 'delete'])->name('course.delete');
         });
     });
 });

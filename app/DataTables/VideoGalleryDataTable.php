@@ -100,7 +100,7 @@ class VideoGalleryDataTable extends DataTable
         return [
             Column::make('SL')->orderable(false)->searchable(false),
             Column::make('iframe_link'),
-            Column::make('category'),
+            Column::make('category')->orderable(false)->searchable(false),
             Column::make('status'),
             Column::make('created_at'),
             Column::make('updated_at'),

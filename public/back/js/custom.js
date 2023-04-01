@@ -63,9 +63,9 @@ if ($(".taginput").length > 0) {
 
 // jQuery NiceSelect;
 if ($("select:not(.dataTables_length select)").length > 0) {
-    $("select").niceSelect();
+    $("select:not(.custom-select)").niceSelect();
     $("body").on("click", function () {
-        $("select:not(.dataTables_length select").niceSelect();
+        $("select:not(.dataTables_length select, .custom-select").niceSelect();
     });
 }
 
@@ -165,4 +165,74 @@ if ($("#language_condition").length > 0) {
     $("#language_condition").on("change", function (e) {
         selectLayout();
     });
+}
+
+// Custom tag builder;
+if ($(".custom-tag-input").length > 0) {
+    let myTags = [];
+
+    // Initialize;
+    let targetKeys = $(".custom-tag-input").val();
+    let targetArray = targetKeys.split(",");
+
+    targetArray.forEach((item) => {
+        if (item != "") {
+            myTags.push(item.trim());
+            $(".custom-tag-input").val("");
+        }
+    });
+
+    tagHandler(myTags);
+    tagSelectHandler();
+
+    $(".custom-tag-input").on("keyup", function (event) {
+        if (event.key === ",") {
+            let targetKeys = this.value;
+            let targetArray = targetKeys.split(",");
+
+            targetArray.forEach((item) => {
+                if (item != "") {
+                    myTags.push(item.trim());
+                    $(".custom-tag-input").val("");
+                }
+            });
+
+            tagHandler(myTags);
+            tagSelectHandler();
+        }
+    });
+
+    function tagHandler(arr) {
+        $(".custom-tag-output").html("");
+        arr.map((item) => {
+            $(".custom-tag-output").append(`
+                <small>
+                    <span>${item}</span>
+                    <i class="ft-x"></i>
+                </small>
+            `);
+        });
+    }
+
+    $(".custom-tag-output").on("click", "i", function () {
+        let key = $(this).parents("small").text();
+
+        myTags = myTags.filter((item) => {
+            return item != key.trim();
+        });
+
+        tagHandler(myTags);
+
+        tagSelectHandler();
+    });
+
+    function tagSelectHandler() {
+        $(".custom-tag-select").html("");
+
+        myTags.map((item) => {
+            $(".custom-tag-select").append(`
+            <option selected value="${item}">${item}</option>
+            `);
+        });
+    }
 }

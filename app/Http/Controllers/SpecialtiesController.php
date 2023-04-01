@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Specialties;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class SpecialtiesController extends Controller
@@ -29,6 +30,7 @@ class SpecialtiesController extends Controller
         $special = new Specialties();
 
         $special->title = $request->title;
+        $special->title = Str::slug($request->title);
         $special->status = $request->status;
         $special->image = ImageUpload($request->image, SPECIALTIES_PATH);
         $special->save();
@@ -54,6 +56,7 @@ class SpecialtiesController extends Controller
         ]);
 
         $special->title = $request->title;
+        $special->title = Str::slug($request->title);
         $special->status = $request->status;
 
         if ($request->hasFile('image')) {

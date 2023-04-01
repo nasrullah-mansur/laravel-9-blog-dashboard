@@ -18,7 +18,6 @@ Route::get('/admin/login', [AuthenticatedSessionController::class, 'create'])->n
 Route::post('/admin/login/store', [AuthenticatedSessionController::class, 'store'])->name('admin.login.store');
 
 Route::group(['middleware' => 'admin'], function () {
-
     Route::post('/admin/logout', [AuthenticatedSessionController::class, 'destroy'])->name('admin.logout');
 });
 

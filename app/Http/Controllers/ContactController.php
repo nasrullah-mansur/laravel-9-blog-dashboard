@@ -62,4 +62,10 @@ class ContactController extends Controller
 
         return redirect()->back()->with('success', 'Email send successfully');
     }
+
+    // ============= Front page ================;
+    public function front_page()
+    {
+        return view('front.contact.index');
+    }
 }

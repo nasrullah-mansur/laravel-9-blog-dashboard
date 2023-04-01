@@ -41,14 +41,31 @@
                 @endif
               </div>
 
+              @php
+                $tagTitles = [];
+                foreach ($tags as $tag) {
+                  array_push($tagTitles, $tag->title);
+                }
+              @endphp
+
+              <!-- Tags start -->
               <div class="form-group">
-                <label>Select Tags</label>
-                <select class="select2 form-control" name="tags[]" multiple>
-                  @foreach ($tags as $tag)
-                  <option {{ in_array($tag->id, $active_tags) ? 'selected' : ''  }} value="{{ $tag->id }}">{{ $tag->title }}</option>
+                <label for="name">Tags (separated by comma "," )</label>
+                <input value="{{ implode(',', $tagTitles) }}" type="text" id="name" class="form-control square custom-tag-input" placeholder="Tags">
+              </div>
+
+              <div class="form-group">
+                <div class="custom-tag-output"></div>
+              </div>
+
+              <div class="form-group d-none">
+                <select class="form-control custom-tag-select custom-select" name="tags[]" multiple>
+                  @foreach ($tags as $t)
+                    <option selected value="{{ $t->title }}">{{ $t->title }}</option>
                   @endforeach
                 </select>
               </div>
+              <!-- Tags end -->
 
               <fieldset class="form-group">
                 <div class="image-preview" >

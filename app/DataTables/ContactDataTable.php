@@ -87,7 +87,7 @@ class ContactDataTable extends DataTable
             Column::make('last_name'),
             Column::make('email'),
             Column::make('phone'),
-            Column::make('updated_at'),
+            Column::make('created_at'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

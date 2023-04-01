@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\Front\FrontController;
-use App\Http\Controllers\SubscriberController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\Back\VideoGalleryController;
+use App\Http\Controllers\CourseController;
 
 Route::get('/', [FrontController::class, 'index'])->name('welcome');
 
@@ -27,3 +28,11 @@ Route::post('subscriber/store', [SubscriberController::class, 'store'])->name('s
 
 // Contact;
 Route::post('user/contact/store', [ContactController::class, 'contact_store'])->name('user.contact.store');
+Route::get('contact', [ContactController::class, 'front_page'])->name('contact.page');
+
+// Youtube video;
+Route::get('/gallery/video', [VideoGalleryController::class, 'video_gallery'])->name('video.gallery');
+Route::get('/gallery/video/category/{slug}', [VideoGalleryController::class, 'video_gallery_by_category'])->name('video.gallery.category');
+
+// Course;
+Route::get('courses/{slug}', [CourseController::class, 'front_course_by_category'])->name('front.courses');

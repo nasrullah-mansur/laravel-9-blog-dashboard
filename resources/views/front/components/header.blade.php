@@ -43,7 +43,7 @@
                 <div class="account">
                     <ul>
                         <li>
-                            <a class="appointment" href="#">
+                            <a class="appointment" href="{{ route('contact.page') }}">
                                 <span>Contact US</span>
                             </a>
                         </li>

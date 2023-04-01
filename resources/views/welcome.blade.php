@@ -44,7 +44,7 @@
       <div class="row justify-content-center">
         @foreach ($specials as $special)
         <div class="col-lg-4 col-md-6">
-            <a href="{{ $special->link }}">
+            <a href="{{route('front.courses', $special->slug)}}">
                 <div class="service-item">
                     <img src="{{ asset($special->image) }}" alt="{{ $special->title }}" />
                     <h4>{{ $special->title }}</h4>
@@ -78,7 +78,7 @@
 </section>
 <!-- Explore end -->
 
-<!-- Explore start -->
+<!-- Blog start -->
 <section class="home-explore">
   <div class="container">
       <div class="explore-title">
@@ -117,10 +117,13 @@
             </div>
         </div>
         @endforeach
-      </div>
+    </div>
+    <div class="text-center">
+        <a href="{{ route('front.blog')}}" class="all-blog-btn">View All Blogs</a>
+    </div>
   </div>
 </section>
-<!-- Explore end -->
+<!-- Blog end -->
 
 
 @endsection

@@ -126,4 +126,32 @@ class VideoGalleryController extends Controller
         $gallery = VideoGallery::where('id', $request->id)->firstOrFail();
         $gallery->delete();
     }
+
+    // =================== Front =====================;
+    public function video_gallery()
+    {
+        $categories = VideoGalleryCategory::all();
+        $galleries = VideoGallery::orderBy('created_at', 'DESC')
+            ->where('status', STATUS_ACTIVE)
+            ->paginate(6);
+
+        $title = 'Image Gallery';
+
+        return view('front.gallery.video.index', compact('categories', 'galleries', 'title'));
+    }
+
+    public function video_gallery_by_category($slug)
+    {
+        $category = VideoGalleryCategory::where('slug', $slug)->firstOrFail();
+        $categories = VideoGalleryCategory::all();
+        $galleries = VideoGallery::where('video_gallery_category_id', $category->id)
+            ->where('status', STATUS_ACTIVE)
+            ->orderBy('created_at', 'DESC')->paginate(6);
+
+        $active_slug = $slug;
+
+        $title = $category->title;
+
+        return view('front.gallery.video.category', compact('categories', 'galleries', 'title', 'active_slug'));
+    }
 }

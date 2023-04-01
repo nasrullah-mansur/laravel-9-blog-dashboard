@@ -31,14 +31,14 @@
                         <li>
                             <fieldset>
                                 <input type="checkbox" id="pages-4" />
-                                <label data-menu-id="{{ $menu_id }}" data-label="Video" data-slug="/gallery" for="pages-4">Gallery</label>
+                                <label data-menu-id="{{ $menu_id }}" data-label="Video" data-slug="{{ route('video.gallery') }}" for="pages-4">Video</label>
                             </fieldset>
                         </li>
 
                         <li>
                             <fieldset>
                                 <input type="checkbox" id="pages-5" />
-                                <label data-menu-id="{{ $menu_id }}" data-label="Contact" data-slug="/contact" for="pages-5">Contact</label>
+                                <label data-menu-id="{{ $menu_id }}" data-label="Contact" data-slug="{{ route('contact.page') }}" for="pages-5">Contact</label>
                             </fieldset>
                         </li>
 

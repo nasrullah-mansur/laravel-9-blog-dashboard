@@ -4,14 +4,15 @@ namespace App\DataTables;
 
 use App\Models\Blog;
 use App\Models\BlogCategory;
-use Illuminate\Database\Eloquent\Builder as QueryBuilder;
-use Yajra\DataTables\EloquentDataTable;
-use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
+use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Yajra\DataTables\CollectionDataTable;
+use Yajra\DataTables\Html\Builder as HtmlBuilder;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
 class BlogDataTable extends DataTable
 {
@@ -30,6 +31,10 @@ class BlogDataTable extends DataTable
                 return $data->created_at->diffForHumans(); // human readable format
             })
 
+            ->editColumn('title', function ($data) {
+                return '<a target="_blank" href="' . route('single.blog', $data->slug) . '"> ' . $data->title . '</a>';
+            })
+
             ->editColumn('updated_at', function ($data) {
                 return $data->updated_at->diffForHumans(); // human readable format
             })
@@ -39,8 +44,7 @@ class BlogDataTable extends DataTable
             })
 
             ->editColumn('category', function ($data) {
-                $bc = BlogCategory::where('id', $data->blog_category_id)->first();
-                return $bc->title;
+                return $data->category->title;
             })
 
             ->editColumn('tags', function ($data) {
@@ -68,7 +72,7 @@ class BlogDataTable extends DataTable
                         <a data-id="' . $data->id . '" class="btn btn-icon btn-danger delete-data" style="margin-right: 5px;" href="#"><i class="ft-trash-2"></i></a> 
                     </div>';
             })
-            ->rawColumns(['action', 'status', 'image']);
+            ->rawColumns(['action', 'status', 'image', 'title']);
     }
 
     /**
@@ -77,9 +81,9 @@ class BlogDataTable extends DataTable
      * @param \App\Models\Blog $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Blog $model): QueryBuilder
+    public function query(Blog $model)
     {
-        return $model->orderBy('created_at', 'DESC')->newQuery();
+        return $model->with('category')->orderBy('created_at', 'DESC')->newQuery();
     }
 
     /**
@@ -117,8 +121,7 @@ class BlogDataTable extends DataTable
             Column::make('SL')->orderable(false)->searchable(false),
             Column::make('image'),
             Column::make('title'),
-            Column::make('category'),
-            Column::make('tags'),
+            Column::make('category')->orderable(false)->searchable(false),
             Column::make('status'),
             Column::make('created_at'),
             Column::make('updated_at'),

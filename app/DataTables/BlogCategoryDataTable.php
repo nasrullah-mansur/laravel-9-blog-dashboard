@@ -28,6 +28,11 @@ class BlogCategoryDataTable extends DataTable
             ->editColumn('created_at', function ($data) {
                 return $data->created_at->diffForHumans(); // human readable format
             })
+
+            ->editColumn('slug', function ($data) {
+                return '<a target="_blank" href="' . route('blog.by.category', $data->slug) . '"> ' . $data->slug . '</a>';
+            })
+
             ->editColumn('updated_at', function ($data) {
                 return $data->updated_at->diffForHumans(); // human readable format
             })
@@ -41,7 +46,7 @@ class BlogCategoryDataTable extends DataTable
                         <a data-id="' . $data->id . '" class="btn btn-icon btn-danger delete-data" style="margin-right: 5px;" href="#"><i class="ft-trash-2"></i></a> 
                     </div>';
             })
-            ->rawColumns(['action', 'status', 'image']);
+            ->rawColumns(['action', 'status', 'image', 'slug']);
     }
 
     /**
@@ -91,7 +96,7 @@ class BlogCategoryDataTable extends DataTable
             // Column::make('image'),
             Column::make('title'),
             Column::make('slug'),
-            Column::make('blogs'),
+            Column::make('blogs')->orderable(false)->searchable(false),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::computed('action')

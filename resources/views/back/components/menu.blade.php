@@ -11,9 +11,11 @@
             <li class="{{ Route::is('blog.category.*') ? 'active' : '' }}">
               <a class="menu-item" href="{{ route('blog.category.index') }}">Categories</a>
             </li>
-            <li class="{{ Route::is('blog.tag.*') ? 'active' : '' }}">
-              <a class="menu-item" href="{{ route('blog.tag.index') }}">Tags</a>
-            </li>
+
+            <li class="{{ Route::is('blog.sidebar') ? 'active' : '' }}">
+              <a class="menu-item" href="{{ route('blog.sidebar') }}">Blog Sidebar</a>
+          </li>
+            
           </ul>
         </li>
 
@@ -41,9 +43,7 @@
                 <a class="menu-item" href="{{ route('specialties.index') }}">Specialties</a>
             </li>
 
-            <li class="{{ Route::is('blog.sidebar.*') ? 'active' : '' }}">
-                <a class="menu-item" href="{{ route('blog.sidebar') }}">Blog Sidebar</a>
-            </li>
+            
             <li class="{{ Route::is('advertizement.*') ? 'active' : '' }}">
                 <a class="menu-item" href="{{ route('advertizement.index') }}">Advertizement</a>
             </li>
@@ -85,6 +85,10 @@
 
         <li class=" nav-item {{ Route::is('subscriber.*') ? 'active' : ''}}">
             <a href="{{route('subscriber.index')}}"><i class="ft-box"></i><span class="menu-title">Subscribers</span></a>
+        </li>
+
+        <li class=" nav-item {{ Route::is('course.*') ? 'active' : ''}}">
+            <a href="{{route('course.index')}}"><i class="ft-box"></i><span class="menu-title">Courses</span></a>
         </li>
         
       </ul>

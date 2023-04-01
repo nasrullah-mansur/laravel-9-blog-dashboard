@@ -41,14 +41,20 @@
                 @endif
               </div>
 
+              <!-- Tags start -->
               <div class="form-group">
-                <label>Select Tags</label>
-                <select class="select2 form-control" name="tags[]" multiple>
-                  @foreach ($tags as $tag)
-                  <option value="{{ $tag->id }}">{{ $tag->title }}</option>
-                  @endforeach
-                </select>
+                <label for="name">Tags (separated by comma "," )</label>
+                <input type="text" id="name" class="form-control square custom-tag-input" placeholder="Tags">
               </div>
+
+              <div class="form-group">
+                <div class="custom-tag-output"></div>
+              </div>
+
+              <div class="form-group d-none">
+                <select class="form-control custom-tag-select custom-select" name="tags[]" multiple></select>
+              </div>
+              <!-- Tags end -->
 
               <fieldset class="form-group">
                 <div class="image-preview hide" >
