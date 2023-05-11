@@ -142,6 +142,15 @@ Route::middleware(['auth'])->group(function () {
             Route::get('course/edit/{id}', [CourseController::class, 'edit'])->name('course.edit');
             Route::post('course/update/{id}', [CourseController::class, 'update'])->name('course.update');
             Route::post('course/delete', [CourseController::class, 'delete'])->name('course.delete');
+
+
+            // Social;
+            Route::get('social', [SocialController::class, 'index'])->name('social.index');
+            Route::get('social/create', [SocialController::class, 'create'])->name('social.create');
+            Route::post('social/store', [SocialController::class, 'store'])->name('social.store');
+            Route::get('social/edit/{id}', [SocialController::class, 'edit'])->name('social.edit');
+            Route::post('social/update/{id}', [SocialController::class, 'update'])->name('social.update');
+            Route::post('social/delete', [SocialController::class, 'delete'])->name('social.delete');
         });
     });
 });

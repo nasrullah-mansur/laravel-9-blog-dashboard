@@ -102,6 +102,14 @@
                         </div>
                     </div>
 
+                    @foreach (blog_add() as $add)
+                    <div class="sidebar-item">
+                        <a href="{{$add->link}}" class="add">
+                            <img class="img-fluid w-100" src="{{asset($add->image)}}" alt="{{$add->title}}" />
+                        </a>
+                    </div>
+                    @endforeach
+
                 </div>
             </div>
         </div>
