@@ -11,6 +11,7 @@ use App\Models\BlogSidebar;
 use App\Models\BlogTag;
 use App\Models\Chamber;
 use App\Models\Contact;
+use App\Models\CustomPage;
 use App\Models\Day;
 use App\Models\ImageGallery;
 use App\Models\Specialties;
@@ -126,5 +127,12 @@ class FrontController extends Controller
         $categories = BlogCategory::with('blogs')->get();
         $tags = BlogTag::all();
         return view('front.blog.blog', compact('blogs', 'title', 'sidebar', 'categories', 'tags'));
+    }
+
+    public function custom_page($slug)
+    {
+        $page = CustomPage::where('slug', $slug)->firstOrFail();
+
+        return view('front.custom.custom', compact('page'));
     }
 }

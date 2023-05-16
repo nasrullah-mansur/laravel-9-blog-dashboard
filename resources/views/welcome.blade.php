@@ -4,13 +4,7 @@
     <link rel="stylesheet" href="{{asset('front/css/pages/index.css')}}">
 @endpush
 
-@push('page_plugin_css')
-<link rel="stylesheet" href="{{ asset('front/css/slick.css') }}" />
-@endpush
 
-@push('page_plugin_js')
-<script src="{{ asset('front/js/slick.min.js') }}"></script>
-@endpush
 
 @section('content')
 <!-- Banner start -->

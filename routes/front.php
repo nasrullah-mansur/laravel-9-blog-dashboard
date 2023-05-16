@@ -36,3 +36,7 @@ Route::get('/gallery/video/category/{slug}', [VideoGalleryController::class, 'vi
 
 // Course;
 Route::get('courses/{slug}', [CourseController::class, 'front_course_by_category'])->name('front.courses');
+
+
+// Custom page;
+Route::get('pages/{slug}', [FrontController::class, 'custom_page'])->name('front.custom.page');

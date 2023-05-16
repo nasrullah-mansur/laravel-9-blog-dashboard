@@ -8,6 +8,7 @@ use App\Http\Controllers\Back\BlogTagController;
 use App\Http\Controllers\Back\AppearanceController;
 use App\Http\Controllers\Back\BannerController;
 use App\Http\Controllers\Back\BlogCategoryController;
+use App\Http\Controllers\Back\CustomPageController;
 use App\Http\Controllers\Back\VideoGalleryController;
 use App\Http\Controllers\BlogSidebarController;
 use App\Http\Controllers\ContactController;
@@ -151,6 +152,15 @@ Route::middleware(['auth'])->group(function () {
             Route::get('social/edit/{id}', [SocialController::class, 'edit'])->name('social.edit');
             Route::post('social/update/{id}', [SocialController::class, 'update'])->name('social.update');
             Route::post('social/delete', [SocialController::class, 'delete'])->name('social.delete');
+
+
+            // Custom Page;
+            Route::get('custom-pages', [CustomPageController::class, 'index'])->name('custom.page.index');
+            Route::get('custom-pages/create', [CustomPageController::class, 'create'])->name('custom.page.create');
+            Route::post('custom-pages/store', [CustomPageController::class, 'store'])->name('custom.page.store');
+            Route::get('custom-pages/edit/{id}', [CustomPageController::class, 'edit'])->name('custom.page.edit');
+            Route::post('custom-pages/update/{id}', [CustomPageController::class, 'update'])->name('custom.page.update');
+            Route::post('custom-pages/delete', [CustomPageController::class, 'delete'])->name('custom.page.delete');
         });
     });
 });

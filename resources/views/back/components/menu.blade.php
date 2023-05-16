@@ -90,6 +90,10 @@
         <li class=" nav-item {{ Route::is('course.*') ? 'active' : ''}}">
             <a href="{{route('course.index')}}"><i class="ft-box"></i><span class="menu-title">Courses</span></a>
         </li>
+
+        <li class=" nav-item {{ Route::is('custom.page.*') ? 'active' : ''}}">
+            <a href="{{route('custom.page.index')}}"><i class="ft-box"></i><span class="menu-title">Custom Pages</span></a>
+        </li>
         
       </ul>
     </div>
