@@ -26,12 +26,16 @@ class CustomPageController extends Controller
         $request->validate([
             'name' => 'required',
             'title' => 'required',
-            'html' => 'required'
+            'html' => 'required',
+            'image' => 'nullable|mimes:png,jpg'
         ]);
 
         $page = new CustomPage();
         $page->name = $request->name;
         $page->title = $request->title;
+        if($request->hasFile('image')) {
+            $page->image = ImageUpload($request->image, CUSTOM_PAGE_BANNER);
+        }
         $page->slug = Str::slug($page->title);
         $page->html = $request->html;
         $page->css = $request->css;
@@ -54,7 +58,8 @@ class CustomPageController extends Controller
         $request->validate([
             'name' => 'required',
             'title' => 'required',
-            'html' => 'required'
+            'html' => 'required',
+            'image' => 'nullable|mimes:png,jpg'
         ]);
 
         $page = CustomPage::where('id', $id)->firstOrFail();
@@ -64,6 +69,9 @@ class CustomPageController extends Controller
         $page->html = $request->html;
         $page->css = $request->css;
         $page->javascript = $request->javascript;
+        if($request->hasFile('image')) {
+            $page->image = ImageUpload($request->image, CUSTOM_PAGE_BANNER, $page->image);
+        }
 
         $page->save();
 
@@ -73,6 +81,7 @@ class CustomPageController extends Controller
     public function delete(Request $request)
     {
         $page = CustomPage::where('id', $request->id)->firstOrFail();
+        removeImage($page->image);
         $page->delete();
     }
 }

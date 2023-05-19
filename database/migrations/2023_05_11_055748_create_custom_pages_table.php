@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->text('name');
             $table->text('title');
+            $table->string('image')->nullable();
             $table->text('slug');
             $table->string('status')->default(STATUS_ACTIVE);
             $table->longText('html')->nullable();

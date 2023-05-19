@@ -18,7 +18,7 @@
       </div>
       <div class="card-content collapse show">
         <div class="card-body">
-          <form class="form" action="{{ route('custom.page.update', $page->id) }}" method="POST" >
+          <form class="form" action="{{ route('custom.page.update', $page->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-body">
               <div class="form-group">
@@ -36,6 +36,20 @@
                     <small class="text-danger">{{ $errors->first('title') }}</small>
                 @endif
               </div>
+
+              <fieldset class="form-group">
+                <div class="image-preview" >
+                    <img style="max-width: 120px;" src="{{ asset($page->image ? $page->image : 'back/images/gallery/1.jpg') }}" alt="image">
+                </div>
+                <label for="basicInputFile">Banner Image (potional) {{$page->image}}</label>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input image-input-show" id="image" name="image">
+                  <label class="custom-file-label" for="image">Choose file</label>
+                </div>
+                @if($errors->has('image'))
+                <small class="text-danger">{{ $errors->first('image') }}</small>
+                @endif
+              </fieldset>
 
               <fieldset class="form-group mb-0">
                 <label for="html">HTML</label>

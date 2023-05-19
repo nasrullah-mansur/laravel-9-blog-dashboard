@@ -26,6 +26,7 @@ const TESTIMONIAL_PATH = 'uploaded_file/images/testimonial/';
 const CTA_PATH = 'uploaded_file/images/cta/';
 const ADD_PATH = 'uploaded_file/images/add/';
 const AWARD_PATH = 'uploaded_file/images/award/';
+const CUSTOM_PAGE_BANNER = 'uploaded_file/images/custom_page/';
 const CHAMBER_PATH = 'uploaded_file/images/chamber/';
 const COURSE_PATH = 'uploaded_file/images/course/';
 const IMAGE_GALLERY_PATH = 'uploaded_file/images/gallery/';

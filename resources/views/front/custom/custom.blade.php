@@ -22,7 +22,7 @@
 
 @section('content')
 <!-- Page banner start -->
-<div class="page-banner" style="background-image: url({{ asset('front/images/banner-bg.jpg') }});">
+<div class="page-banner" style="background-image: url({{ asset($page->image ? $page->image : 'front/images/banner-bg.jpg') }});">
     <div class="container">
         <h2>{{ $page->name }}</h2>
     </div>
