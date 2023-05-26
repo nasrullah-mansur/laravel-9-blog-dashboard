@@ -18,6 +18,12 @@ Route::get('/blogs/tag/{slug}', [FrontController::class, 'blog_by_tag'])->name('
 Route::post('blog/by/search', [FrontController::class, 'blog_by_search_get'])->name('blog.by.search.get');
 Route::get('blog/by/search/{key}', [FrontController::class, 'blog_by_search_set'])->name('blog.by.search.set');
 
+
+// Upcoming Blog;
+Route::get('/upcoming-blogs', [FrontController::class, 'up_blogs'])->name('front.up.blog');
+Route::get('/upcoming-blog/{slug}', [FrontController::class, 'up_single_blog'])->name('single.up.blog');
+Route::get('/upcoming-blogs/category/{slug}', [FrontController::class, 'up_blog_by_category'])->name('up.blog.by.category');
+
 // Chambers;
 Route::get('chambers', [FrontController::class, 'chambers'])->name('front.chamber');
 Route::post('chambers/find', [FrontController::class, 'chambers_by_search_set'])->name('front.chamber.set');

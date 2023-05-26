@@ -30,8 +30,18 @@
                           @if ($menu->menuItem->count() != 0)
                           <ul>
                             @foreach ($menu->menuItem as $submenu)
+                            
                               <li {{ $submenu->class ? $submenu->class : '' }}>
                                 <a target="{{ $submenu->target }}" href="{{ $submenu->slug }}">{{ $submenu->label }}</a>
+                                @if ($submenu->childMenuItem->count() != 0)
+                                <ul class="sub-sub-menu">
+                                    @foreach ($submenu->childMenuItem as $subsubmenu)
+                                    <li>
+                                        <a target="{{ $subsubmenu->target }}" href="{{ $subsubmenu->slug }}">{{ $subsubmenu->label }}</a>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                                @endif
                               </li>
                               @endforeach
                             </ul>

@@ -18,4 +18,7 @@ class MenuItem extends Model
     {
         return $this->hasMany(MenuItem::class, 'p_id')->with('menuItem')->orderBy('position');
     }
+
+
+    
 }

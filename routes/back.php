@@ -16,6 +16,8 @@ use App\Http\Controllers\ContactSectionController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\SpecialtiesController;
 use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\UpcomingBlogCategoryController;
+use App\Http\Controllers\UpcomingBlogController;
 
 Route::middleware(['auth'])->group(function () {
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -37,6 +39,14 @@ Route::middleware(['auth'])->group(function () {
             Route::post('blog/category/update/{id}', [BlogCategoryController::class, 'update'])->name('blog.category.update');
             Route::post('blog/category/delete', [BlogCategoryController::class, 'delete'])->name('blog.category.delete');
 
+            // Blog Categories;
+            Route::get('up-blog/categories', [UpcomingBlogCategoryController::class, 'index'])->name('up.blog.category.index');
+            Route::get('up-blog/category/create', [UpcomingBlogCategoryController::class, 'create'])->name('up.blog.category.create');
+            Route::post('up-blog/category/store', [UpcomingBlogCategoryController::class, 'store'])->name('up.blog.category.store');
+            Route::get('up-blog/category/edit/{id}', [UpcomingBlogCategoryController::class, 'edit'])->name('up.blog.category.edit');
+            Route::post('up-blog/category/update/{id}', [UpcomingBlogCategoryController::class, 'update'])->name('up.blog.category.update');
+            Route::post('up-blog/category/delete', [UpcomingBlogCategoryController::class, 'delete'])->name('up.blog.category.delete');
+
             // Blog Tags;
             Route::get('blog/tags', [BlogTagController::class, 'index'])->name('blog.tag.index');
             Route::get('blog/tag/create', [BlogTagController::class, 'create'])->name('blog.tag.create');
@@ -52,6 +62,14 @@ Route::middleware(['auth'])->group(function () {
             Route::get('blog/edit/{id}', [BlogController::class, 'edit'])->name('blog.edit');
             Route::post('blog/update/{id}', [BlogController::class, 'update'])->name('blog.update');
             Route::post('blog/delete', [BlogController::class, 'delete'])->name('blog.delete');
+
+            // Blogs;
+            Route::get('up-blog', [UpcomingBlogController::class, 'index'])->name('up.blog.index');
+            Route::get('up-blog/create', [UpcomingBlogController::class, 'create'])->name('up.blog.create');
+            Route::post('up-blog/store', [UpcomingBlogController::class, 'store'])->name('up.blog.store');
+            Route::get('up-blog/edit/{id}', [UpcomingBlogController::class, 'edit'])->name('up.blog.edit');
+            Route::post('up-blog/update/{id}', [UpcomingBlogController::class, 'update'])->name('up.blog.update');
+            Route::post('up-blog/delete', [UpcomingBlogController::class, 'delete'])->name('up.blog.delete');
 
             // Appearance;
             Route::get('appearance/edit', [AppearanceController::class, 'edit'])->name('appearance.edit');

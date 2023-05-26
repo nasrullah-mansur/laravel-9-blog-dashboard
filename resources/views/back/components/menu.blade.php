@@ -18,6 +18,19 @@
             
           </ul>
         </li>
+        
+        <li class=" nav-item {{ Route::is('up.blog.*') ? 'active open' : '' }}">
+          <a href="#"><i class="ft-box"></i><span class="menu-title">Upcoming Course Blog</span></a>
+          <ul class="menu-content">
+            <li class="{{ Route::is('up.blog.index', 'up.blog.create', 'up.blog.edit') ? 'active' : '' }}">
+                <a class="menu-item" href="{{ route('up.blog.index') }}">Blogs</a>
+            </li>
+            <li class="{{ Route::is('up.blog.category.*') ? 'active' : '' }}">
+              <a class="menu-item" href="{{ route('up.blog.category.index') }}">Categories</a>
+            </li>
+            
+          </ul>
+        </li>
 
         
         <li class=" nav-item {{ Route::is('image_gallery_category.*', 'video_gallery_category.*') ? 'active open' : '' }}">

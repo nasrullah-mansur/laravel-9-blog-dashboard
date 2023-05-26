@@ -30,8 +30,14 @@ class SubscriberController extends Controller
             $sub->save();
         }
 
+        if($request->has('access')) {
+            return redirect()->to('https://drive.google.com/file/d/1raU6jkmeaIGhb-55WDB9ZBZj0IOqy5vj/view?usp=share_link');
 
-        return redirect()->back()->with('subscribed', 'Thank you');
+        } else {
+
+            return redirect()->back()->with('subscribed', 'Thank you');
+        }
+
     }
 
     public function delete(Request $request)

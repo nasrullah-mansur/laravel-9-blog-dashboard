@@ -7,7 +7,7 @@ getItemValueOnKeyUp();
 // collapseAndDelete();
 
 $(".dd").nestable({
-    maxDepth: 2,
+    maxDepth: 3,
     serialize: "toArray",
     expandBtnHTML: null,
     collapseBtnHTML: null,

@@ -2,29 +2,31 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Controllers\Controller;
+use App\Models\Day;
+use App\Models\Blog;
+use App\Models\Time;
 use App\Models\Award;
 use App\Models\Banner;
-use App\Models\Blog;
-use App\Models\BlogCategory;
-use App\Models\BlogSidebar;
 use App\Models\BlogTag;
 use App\Models\Chamber;
 use App\Models\Contact;
 use App\Models\CustomPage;
-use App\Models\Day;
-use App\Models\ImageGallery;
+use App\Models\BlogSidebar;
 use App\Models\Specialties;
 use App\Models\Testimonial;
-use App\Models\Time;
-use App\Models\Training;
+use App\Models\BlogCategory;
+use App\Models\ImageGallery;
 use App\Models\VideoGallery;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\UpcomingBlog;
+use App\Models\UpcomingBlogCategory;
 
 class FrontController extends Controller
 {
     public function index()
     {
+
         $specials = Specialties::where('status', STATUS_ACTIVE)->get();
         $videos = VideoGallery::orderBy('created_at', 'DESC')->take(6)->get();
 
@@ -134,5 +136,48 @@ class FrontController extends Controller
         $page = CustomPage::where('slug', $slug)->firstOrFail();
 
         return view('front.custom.custom', compact('page'));
+    }
+
+
+    // Upcoming Blogs;
+    public function up_blogs()
+    {
+        $title = 'Blogs';
+        $blogs = UpcomingBlog::where('status', STATUS_ACTIVE)->orderBy('created_at', 'desc')->paginate(9);
+        $sidebar = BlogSidebar::first();
+        $categories = UpcomingBlogCategory::with('blogs')->get();
+        return view('front.blog_upcoming.blog', compact('blogs', 'title', 'sidebar', 'categories'));
+    }
+
+    public function up_single_blog($slug)
+    {
+        $blog = UpcomingBlog::where('slug', $slug)->firstOrFail();
+
+        $previous_id = UpcomingBlog::where('id', '<', $blog->id)->max('id');
+        $next_id = UpcomingBlog::where('id', '>', $blog->id)->min('id');
+
+        $previous_blog = UpcomingBlog::where('id', $previous_id)->first(['title', 'slug']);
+        $next_blog = UpcomingBlog::where('id', $next_id)->first(['title', 'slug']);
+
+        $other_blogs = UpcomingBlog::where('slug', '!=', $slug)->take(3)->get();
+        $categories = UpcomingBlogCategory::with('blogs')->get();
+
+        $sidebar = BlogSidebar::first();
+
+        return view('front.blog_upcoming.single', compact('blog', 'previous_blog', 'next_blog', 'other_blogs', 'categories', 'sidebar'));
+    }
+
+    public function up_blog_by_category($slug)
+    {
+        $blogCat = UpcomingBlogCategory::where('slug', $slug)->firstOrFail();
+        $title = 'Category: ' . $blogCat->title;
+
+        $blogs = UpcomingBlog::where('status', STATUS_ACTIVE)
+            ->where('blog_category_id', $blogCat->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(9);
+        $sidebar = BlogSidebar::first();
+        $categories = UpcomingBlogCategory::with('blogs')->get();
+        return view('front.blog_upcoming.blog', compact('blogs', 'title', 'sidebar', 'categories'));
     }
 }
